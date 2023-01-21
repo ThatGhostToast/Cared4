@@ -6,6 +6,13 @@
 
 ### What is Cared4?
 
+### Cared4 Tools
+[Mobile Application](https://github.com/ThatGhostToast/Cared4_Mobile)
+> Last Updated: 1/20/22
+
+[REST API](https://github.com/ThatGhostToast/Cared4_REST_API)
+> Last Updated: 1/16/22
+
 ### Documentation
 [Project Proposal](https://docs.google.com/document/d/1PCRSNxgnRMQx6O9c5rn3vWLHWnhXd8fL/edit?usp=sharing&ouid=111282101982849658780&rtpof=true&sd=true)
 > Last Updated: 9/25/22
