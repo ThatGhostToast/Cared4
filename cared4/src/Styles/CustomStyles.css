@@ -1,0 +1,39 @@
+.backdrop {
+    outline-style: solid;
+    outline-width: medium;
+    color: #9AEBA3;
+    padding: 1%;
+    flex: 1;
+    position: fixed;
+}
+
+.navBar {
+    justify-content: center;
+}
+
+.navBar-link {
+    align-self: center;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+}
+
+.divStyle{
+    padding-top: 3%;
+}
+
+.button-spacing{
+    line-height: 1;
+}
+
+.homeButtons{
+    display: flex;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+
+.homeButton{
+    
+}
