@@ -7,7 +7,7 @@ const NavBar = () => {
     return (
         <nav className="navbar is-fixed-top backdrop" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <a className="navbar-item" href="https://bulma.io">
+                <a className="navbar-item" href="/">
                     <img src={logo} alt="Logo"/>
                 </a>
 
@@ -28,10 +28,10 @@ const NavBar = () => {
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="buttons">
-                        <a className="button is-primary" href="https://google.com">
+                        <a className="button is-primary" href="/register">
                             <strong>Sign up</strong>
                         </a>
-                        <a className="button is-primary is-outlined" href="https://google.com">
+                        <a className="button is-primary is-outlined" href="/login">
                             Log in
                         </a>
                         </div>

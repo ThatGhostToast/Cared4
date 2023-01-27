@@ -4,6 +4,8 @@ import dataSource from "./dataSource";
 import Home from './Pages/Home';
 import About from "./Pages/About";
 import './Styles/App.css';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
 
 const App = () => {
   const [illnessList, setIllnessList] = useState([]);
@@ -26,6 +28,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path='/about' element={<About/>} />
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/register' element={<Register/>}/>
       </Routes>
     </Router>
   );

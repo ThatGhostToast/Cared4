@@ -58,9 +58,17 @@ const Home = () => {
         </section>
         <section className="section">
           <div class="homeButtons">
-            <button className='button is-large is-primary is-rounded button-spacing homeButton'>Diagnose Yourself Now!</button>
-            <button className='button is-large is-primary is-rounded button-spacing homeButton'>Want More Accurate Results?<br/> Create an Account!</button>
-            <button className='button is-large is-primary is-rounded button-spacing homeButton'>Feeling a Little Ill?<br/> See Most Common Illnesses</button>
+            <button className="button is-large is-primary is-rounded button-spacing homeButton">
+              Diagnose Yourself Now!
+            </button>
+            <a className="button is-large is-primary is-rounded button-spacing homeButton" href="/register">
+              Want More Accurate Results?
+              <br /> Create an Account!
+            </a>
+            <button className="button is-large is-primary is-rounded button-spacing homeButton">
+              Feeling a Little Ill?
+              <br /> See Most Common Illnesses
+            </button>
           </div>
         </section>
       </div>

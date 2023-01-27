@@ -34,6 +34,12 @@
     justify-content: space-evenly;
 }
 
-.homeButton{
-    
+.customCard{
+    display: flex;
+    justify-content: center;
+}
+
+.cared4Logo{
+    display: flex;
+    justify-content: center;
 }
