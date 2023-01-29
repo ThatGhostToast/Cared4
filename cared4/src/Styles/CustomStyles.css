@@ -43,3 +43,24 @@
     display: flex;
     justify-content: center;
 }
+
+.search-forms{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+}
+
+.cardStyles{
+    width: 40%;
+}
+
+.headshot-style{
+    border-radius: 25px;
+    outline-style: solid;
+    outline-width: thick;
+    outline-color: rgb(29, 206, 29);
+}
+
+.content-squish{
+    padding-top: 0;
+}

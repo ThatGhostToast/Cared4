@@ -11,17 +11,22 @@ const NavBar = () => {
                     <img src={logo} alt="Logo"/>
                 </a>
 
-                <a href="https://google.com" role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <button className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
                     <span aria-hidden="true"></span>
-                </a>
+                </button>
             </div>
 
             <div id="navbarBasicExample" className="navbar-menu navBar">
                 <div className="navBar-link">
-                    <a className="navbar-item" href="/about">
+                    <a className="button is-primary is-inverted" href="/search">
                         Search for an Illness
+                    </a>
+                </div>
+                <div className="navBar-link">
+                    <a className="button is-primary is-inverted" href="/about">
+                        About Us
                     </a>
                 </div>
 

@@ -28,67 +28,91 @@ const RegisterForm = () => {
 
           <div class="field">
             <label class="label">Email</label>
-            <div class="control has-icons-left has-icons-right">
+            <div class="control">
               <input
                 class="input is-primary is-medium"
                 type="email"
                 placeholder="Email"
               />
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-exclamation-triangle"></i>
-              </span>
             </div>
           </div>
 
           <div class="field">
-            <div class="control has-icons-left has-icons-right">
+            <div class="control">
               <input
                 class="input is-primary is-medium"
                 type="email"
                 placeholder="Confirm Email"
               />
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-exclamation-triangle"></i>
-              </span>
             </div>
           </div>
 
           <div class="field">
             <label class="label">Password</label>
-            <div class="control has-icons-left has-icons-right">
+            <div class="control">
               <input
                 class="input is-primary is-medium"
                 type="password"
                 placeholder="Password"
               />
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-exclamation-triangle"></i>
-              </span>
             </div>
           </div>
 
           <div class="field">
-            <div class="control has-icons-left has-icons-right">
+            <div class="control">
               <input
                 class="input is-primary is-medium"
                 type="password"
                 placeholder="Confirm Password"
               />
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-exclamation-triangle"></i>
-              </span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Birthday</label>
+            <div class="control">
+              <input
+                class="input is-primary is-medium"
+                type="date"
+                placeholder="Birthday"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Sex</label>
+            <div class="control">
+              <div class="select is-primary is-medium">
+                <select>
+                  <option selected="true" disabled>
+                    Please select your sex
+                  </option>
+                  <option>Male</option>
+                  <option>Female</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Previous Medical Conditions</label>
+            <div class="control">
+              <input
+                class="input is-primary is-medium"
+                type="text"
+                placeholder="Please input any past medical issues seperated with a comma"
+              />
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Profile Picture</label>
+            <div class="control">
+              <input
+                class="input is-primary is-medium"
+                type="file" accept="image/*"
+              />
             </div>
           </div>
 
@@ -96,7 +120,7 @@ const RegisterForm = () => {
             <div class="control">
               <label class="checkbox">
                 <input type="checkbox" />I agree to the{" "}
-                <a href="/">terms and conditions</a>
+                <a href="/terms">terms and conditions</a>
               </label>
             </div>
           </div>

@@ -6,6 +6,9 @@ import About from "./Pages/About";
 import './Styles/App.css';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
+import Terms from './Pages/Terms&Conditions';
+import SearchForms from './Pages/SearchForms';
+import Account from './Pages/Account';
 
 const App = () => {
   const [illnessList, setIllnessList] = useState([]);
@@ -30,6 +33,9 @@ const App = () => {
         <Route path='/about' element={<About/>} />
         <Route path='/login' element={<Login/>}/>
         <Route path='/register' element={<Register/>}/>
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/search" element={<SearchForms/>}/>
+        <Route path="/account" element={<Account/>}/>
       </Routes>
     </Router>
   );

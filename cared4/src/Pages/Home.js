@@ -58,9 +58,9 @@ const Home = () => {
         </section>
         <section className="section">
           <div class="homeButtons">
-            <button className="button is-large is-primary is-rounded button-spacing homeButton">
+            <a href="/search" className="button is-large is-primary is-rounded button-spacing homeButton">
               Diagnose Yourself Now!
-            </button>
+            </a>
             <a className="button is-large is-primary is-rounded button-spacing homeButton" href="/register">
               Want More Accurate Results?
               <br /> Create an Account!
