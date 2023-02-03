@@ -10,6 +10,7 @@ import Terms from './Pages/Terms&Conditions';
 import SearchForms from './Pages/SearchForms';
 import Account from './Pages/Account';
 import CloseUp from "./Pages/CloseUp";
+import Results from "./Pages/Results";
 
 const App = () => {
   const [illnessList, setIllnessList] = useState([]);
@@ -38,6 +39,7 @@ const App = () => {
         <Route path="/search" element={<SearchForms/>}/>
         <Route path="/account" element={<Account/>}/>
         <Route path="/closeup" element={<CloseUp/>}/>
+        <Route path="/results" element={<Results />}/>
       </Routes>
     </Router>
   );

@@ -3,8 +3,11 @@ import '../Styles/Bulma.css'
 import '../Styles/CustomStyles.css'
 
 const RegisterForm = () => {
+    let progress = 0;
+
     return (
       <div className="container is-max-desktop">
+        <progress class="progress is-primary" value={progress} max="100">15%</progress>
         <section>
           <div class="field">
             <label class="label">Name</label>
@@ -13,6 +16,7 @@ const RegisterForm = () => {
                 class="input is-primary is-medium"
                 type="text"
                 placeholder="First Name"
+                id="firstNameInput"
               />
             </div>
           </div>
@@ -22,6 +26,7 @@ const RegisterForm = () => {
                 class="input is-primary is-medium"
                 type="text"
                 placeholder="Last Name"
+                id="lastNameInput"
               />
             </div>
           </div>
@@ -33,6 +38,7 @@ const RegisterForm = () => {
                 class="input is-primary is-medium"
                 type="email"
                 placeholder="Email"
+                id="emailInput"
               />
             </div>
           </div>
@@ -43,6 +49,7 @@ const RegisterForm = () => {
                 class="input is-primary is-medium"
                 type="email"
                 placeholder="Confirm Email"
+                id="confirmEmailInput"
               />
             </div>
           </div>
@@ -54,6 +61,7 @@ const RegisterForm = () => {
                 class="input is-primary is-medium"
                 type="password"
                 placeholder="Password"
+                id="passwordInput"
               />
             </div>
           </div>
@@ -64,6 +72,7 @@ const RegisterForm = () => {
                 class="input is-primary is-medium"
                 type="password"
                 placeholder="Confirm Password"
+                id="confirmPasswordInput"
               />
             </div>
           </div>
@@ -75,6 +84,7 @@ const RegisterForm = () => {
                 class="input is-primary is-medium"
                 type="date"
                 placeholder="Birthday"
+                id="birthdayInput"
               />
             </div>
           </div>
@@ -102,6 +112,7 @@ const RegisterForm = () => {
                 class="input is-primary is-medium"
                 type="text"
                 placeholder="Please input any past medical issues seperated with a comma"
+                id="conditionsInput"
               />
             </div>
           </div>
@@ -112,6 +123,7 @@ const RegisterForm = () => {
               <input
                 class="input is-primary is-medium"
                 type="file" accept="image/*"
+                id="imageInput"
               />
             </div>
           </div>

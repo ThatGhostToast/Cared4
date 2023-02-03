@@ -65,6 +65,17 @@
     padding-top: 0;
 }
 
+.custom-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.account-details{
+    padding-top: 0;
+}
+
 .sickness-image{
     
 }
