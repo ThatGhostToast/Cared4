@@ -1,153 +1,230 @@
-import React from "react";
+import React, { useState } from "react";
 import '../Styles/Bulma.css'
 import '../Styles/CustomStyles.css'
+import { useNavigate } from "react-router-dom";
+import dataSource from "../dataSource.js";
 
 const RegisterForm = () => {
     let progress = 0;
 
+    const [newFirstName, setNewFirstName] = useState('');
+    const [newLastName, setNewLastName] = useState('');
+    const [newEmail, setNewEmail] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [newBirthday, setNewBirthday] = useState('');
+    const [newSex, setNewSex] = useState('');
+    const [newPreviousConditions, setNewPreviousConditions] = useState('');
+    const [newImage, setNewImage] = useState('');
+    const navigate = useNavigate();
+
+    const updateFirstName = (event) => {
+      setNewFirstName(event.target.value);
+    };
+    const updateLastName = (event) => {
+      setNewLastName(event.target.value);
+    };
+    const updateEmail = (event) => {
+      setNewEmail(event.target.value);
+    };
+    const updatePassword = (event) => {
+      setNewPassword(event.target.value);
+    };
+    const updateBirthday = (event) => {
+      setNewBirthday(event.target.value);
+    }
+    const updateSex = (event) => {
+      setNewSex(event.target.value);
+    };
+    const updateConditions = (event) => {
+      setNewPreviousConditions(event.target.value);
+    };
+    const updateImage = (event) => {
+      setNewImage(event.target.value);
+    };
+  
+    const handleFormSubmit = (event) => {
+      event.preventDefault();
+  
+      console.log("submit");
+      const newUser = {
+        firstName: newFirstName,
+        lastName: newLastName,
+        email: newEmail,
+        password: newPassword,
+        birthday: newBirthday,
+        sex: newSex,
+        conditions: newPreviousConditions,
+        image: newImage
+      };
+  
+      console.log(newUser);
+  
+      saveUser(newUser);
+    };
+  
+    const saveUser = async (user) => {
+      let response;
+
+      response = await dataSource.post("/users", user);
+
+      console.log(response);
+      console.log(response.data);
+      navigate("/home");
+    };  
+
     return (
       <div className="container is-max-desktop">
-        <progress class="progress is-primary" value={progress} max="100">15%</progress>
-        <section>
-          <div class="field">
-            <label class="label">Name</label>
-            <div class="control">
-              <input
-                class="input is-primary is-medium"
-                type="text"
-                placeholder="First Name"
-                id="firstNameInput"
-              />
-            </div>
-          </div>
-          <div class="field">
-            <div class="control">
-              <input
-                class="input is-primary is-medium"
-                type="text"
-                placeholder="Last Name"
-                id="lastNameInput"
-              />
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control">
-              <input
-                class="input is-primary is-medium"
-                type="email"
-                placeholder="Email"
-                id="emailInput"
-              />
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <input
-                class="input is-primary is-medium"
-                type="email"
-                placeholder="Confirm Email"
-                id="confirmEmailInput"
-              />
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control">
-              <input
-                class="input is-primary is-medium"
-                type="password"
-                placeholder="Password"
-                id="passwordInput"
-              />
-            </div>
-          </div>
-
-          <div class="field">
-            <div class="control">
-              <input
-                class="input is-primary is-medium"
-                type="password"
-                placeholder="Confirm Password"
-                id="confirmPasswordInput"
-              />
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Birthday</label>
-            <div class="control">
-              <input
-                class="input is-primary is-medium"
-                type="date"
-                placeholder="Birthday"
-                id="birthdayInput"
-              />
-            </div>
-          </div>
-
-          <div class="field">
-            <label class="label">Sex</label>
-            <div class="control">
-              <div class="select is-primary is-medium">
-                <select>
-                  <option selected="true" disabled>
-                    Please select your sex
-                  </option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Other</option>
-                </select>
+        <progress class="progress is-primary" value={progress} max="100" />
+        <form onSubmit={handleFormSubmit}>
+          <section>
+            <div class="field">
+              <label class="label">Name</label>
+              <div class="control">
+                <input
+                  class="input is-primary is-medium"
+                  type="text"
+                  placeholder="First Name"
+                  id="firstNameInput"
+                  onChange={updateFirstName}
+                />
               </div>
             </div>
-          </div>
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-primary is-medium"
+                  type="text"
+                  placeholder="Last Name"
+                  id="lastNameInput"
+                  onChange={updateLastName}
+                />
+              </div>
+            </div>
 
-          <div class="field">
-            <label class="label">Previous Medical Conditions</label>
-            <div class="control">
-              <input
-                class="input is-primary is-medium"
-                type="text"
-                placeholder="Please input any past medical issues seperated with a comma"
-                id="conditionsInput"
-              />
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control">
+                <input
+                  class="input is-primary is-medium"
+                  type="email"
+                  placeholder="Email"
+                  id="emailInput"
+                  onChange={updateEmail}
+                />
+              </div>
             </div>
-          </div>
 
-          <div class="field">
-            <label class="label">Profile Picture</label>
-            <div class="control">
-              <input
-                class="input is-primary is-medium"
-                type="file" accept="image/*"
-                id="imageInput"
-              />
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-primary is-medium"
+                  type="email"
+                  placeholder="Confirm Email"
+                  id="confirmEmailInput"
+                />
+              </div>
             </div>
-          </div>
 
-          <div class="field">
-            <div class="control">
-              <label class="checkbox">
-                <input type="checkbox" />I agree to the{" "}
-                <a href="/terms">terms and conditions</a>
-              </label>
+            <div class="field">
+              <label class="label">Password</label>
+              <div class="control">
+                <input
+                  class="input is-primary is-medium"
+                  type="password"
+                  placeholder="Password"
+                  id="passwordInput"
+                  onChange={updatePassword}
+                />
+              </div>
             </div>
-          </div>
 
-          <div class="field is-grouped">
-            <div class="control">
-              <button class="button is-primary">Submit</button>
+            <div class="field">
+              <div class="control">
+                <input
+                  class="input is-primary is-medium"
+                  type="password"
+                  placeholder="Confirm Password"
+                  id="confirmPasswordInput"
+                />
+              </div>
             </div>
-            <div class="control">
-              <a class="button is-primary is-outlined" href="/login">
-                Login
-              </a>
+
+            <div class="field">
+              <label class="label">Birthday</label>
+              <div class="control">
+                <input
+                  class="input is-primary is-medium"
+                  type="date"
+                  placeholder="Birthday"
+                  id="birthdayInput"
+                  onChange={updateBirthday}
+                />
+              </div>
             </div>
-          </div>
-        </section>
+
+            <div class="field">
+              <label class="label">Sex</label>
+              <div class="control">
+                <div class="select is-primary is-medium">
+                  <select onChange={updateSex}>
+                    <option selected="true" disabled>
+                      Please select your sex
+                    </option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Previous Medical Conditions</label>
+              <div class="control">
+                <input
+                  class="input is-primary is-medium"
+                  type="text"
+                  placeholder="Please input any past medical issues seperated with a comma"
+                  id="conditionsInput"
+                  onChange={updateConditions}
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <label class="label">Profile Picture</label>
+              <div class="control">
+                <input
+                  class="input is-primary is-medium"
+                  type="file"
+                  accept="image/*"
+                  id="imageInput"
+                  onChange={updateImage}
+                />
+              </div>
+            </div>
+
+            <div class="field">
+              <div class="control">
+                <label class="checkbox">
+                  <input type="checkbox" />I agree to the{" "}
+                  <a href="/terms">terms and conditions</a>
+                </label>
+              </div>
+            </div>
+
+            <div class="field is-grouped">
+              <div class="control">
+                <button class="button is-primary" type="submit">Submit</button>
+              </div>
+              <div class="control">
+                <a class="button is-primary is-outlined" href="/login">
+                  Login
+                </a>
+              </div>
+            </div>
+          </section>
+        </form>
       </div>
     );
 };
