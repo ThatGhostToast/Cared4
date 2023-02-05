@@ -1,9 +1,55 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import '../Styles/Bulma.css'
 import '../Styles/CustomStyles.css'
 import logo from '../Assets/OriginalLogos/Cared4-logos_transparent.png'
+import dataSource from "../dataSource";
 
 const LoginForm = () => {
+    const [userEmail, setUserEmail] = useState('');
+    const [userPassword, setUserPassword] = useState('');
+    const navigate = useNavigate();
+
+    const updateEmail = (event) => {
+      setUserEmail(event.target.value);
+    };
+    const updatePassword = (event) => {
+      setUserPassword(event.target.value);
+    };
+
+    const handleFormSubmit = (event) => {
+      event.preventDefault();
+  
+      console.log("submit");
+      const User = {
+        email: userEmail,
+        password: userPassword,
+      };
+  
+      saveUser(User);
+    };
+  
+    const saveUser = async (user) => {
+      let response;
+
+      response = await dataSource.post("/users/login", user);
+
+      //TODO remove the log statements after we dont need them anymore
+      console.log(response);
+      console.log(response.data);
+      console.log(response.status);
+      if (response.status === 200)
+      {
+        navigate("/");
+      } else if (response.status === 201) {
+        //Incorrect Password
+        navigate("/login");
+      } else {
+        //User not found
+        navigate("/login");
+      }
+    };  
+
     return (
       <div className="container is-max-desktop">
         <section>
@@ -11,51 +57,57 @@ const LoginForm = () => {
             <img src={logo} alt="logo" />
           </div>
         </section>
-        <section className="section">
-          <div class="field">
-            <label class="label">Email</label>
-            <div class="control has-icons-left has-icons-right">
-              <input
-                class="input is-primary is-medium"
-                type="email"
-                placeholder="Email"
-              />
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-exclamation-triangle"></i>
-              </span>
+        <form onSubmit={handleFormSubmit}>
+          <section className="section">
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control has-icons-left has-icons-right">
+                <input
+                  className="input is-primary is-medium"
+                  type="email"
+                  placeholder="Email"
+                  onChange={updateEmail}
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-envelope"></i>
+                </span>
+                <span className="icon is-small is-right">
+                  <i className="fas fa-exclamation-triangle"></i>
+                </span>
+              </div>
             </div>
-          </div>
-          <div class="field">
-            <label class="label">Password</label>
-            <div class="control has-icons-left has-icons-right">
-              <input
-                class="input is-primary is-medium"
-                type="password"
-                placeholder="Password"
-              />
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-exclamation-triangle"></i>
-              </span>
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control has-icons-left has-icons-right">
+                <input
+                  className="input is-primary is-medium"
+                  type="password"
+                  placeholder="Password"
+                  onChange={updatePassword}
+                />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-envelope"></i>
+                </span>
+                <span className="icon is-small is-right">
+                  <i className="fas fa-exclamation-triangle"></i>
+                </span>
+              </div>
             </div>
-          </div>
 
-          <div className="customCard">
-            <div class="field is-grouped">
-              <div class="control">
-                <button class="button is-primary">Login</button>
-              </div>
-              <div class="control">
-                <a class="button is-primary is-outlined" href="/register">Register</a>
+            <div className="customCard">
+              <div className="field is-grouped">
+                <div className="control">
+                  <button className="button is-primary" type="submit">Login</button>
+                </div>
+                <div className="control">
+                  <a className="button is-primary is-outlined" href="/register">
+                    Register
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </form>
       </div>
     );
 };

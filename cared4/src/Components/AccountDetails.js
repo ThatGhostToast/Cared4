@@ -8,12 +8,12 @@ const AccountDetails = () => {
     return (
       <div className="container is-max-desktop custom-container">
         <section className="section">
-          <figure class="image is-128x128 profile-picture">
+          <figure className="image is-128x128 profile-picture">
             <img src={userImage} alt="profilePicture" />
           </figure>
         </section>
         <section className="section account-details">
-          <table class="table">
+          <table className="table">
             <tbody>
               <tr>
                 <td>

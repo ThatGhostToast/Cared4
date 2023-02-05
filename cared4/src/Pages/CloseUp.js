@@ -13,11 +13,11 @@ const CloseUp = () => {
               <img src="" alt="sicknessImg" className="sickness-image" />
             </div>
             <div className="column">
-              <div class="card">
-                <div class="card-content">
-                  <div class="media">
-                    <div class="media-content">
-                      <label class="label">Illness Name</label>
+              <div className="card">
+                <div className="card-content">
+                  <div className="media">
+                    <div className="media-content">
+                      <label className="label">Illness Name</label>
                       <p>This is eventually going to be filled with lots of information about the illness</p>
                     </div>
                   </div>

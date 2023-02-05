@@ -13,14 +13,14 @@ const Home = () => {
       </section>
       <div className="content">
         <section className="section">
-          <div class="tile is-ancestor">
-            <div class="tile is-vertical is-8">
-              <div class="tile">
-                <div class="tile is-parent">
-                  <article class="tile is-child box">
-                    <p class="title">Middle box</p>
-                    <p class="subtitle">With an image</p>
-                    <figure class="image is-4by3">
+          <div className="tile is-ancestor">
+            <div className="tile is-vertical is-8">
+              <div className="tile">
+                <div className="tile is-parent">
+                  <article className="tile is-child box">
+                    <p className="title">Middle box</p>
+                    <p className="subtitle">With an image</p>
+                    <figure className="image is-4by3">
                       <img
                         src="https://bulma.io/images/placeholders/640x480.png"
                         alt="Placeholder"
@@ -28,11 +28,11 @@ const Home = () => {
                     </figure>
                   </article>
                 </div>
-                <div class="tile is-parent">
-                  <article class="tile is-child box">
-                    <p class="title">Middle box</p>
-                    <p class="subtitle">With an image</p>
-                    <figure class="image is-4by3">
+                <div className="tile is-parent">
+                  <article className="tile is-child box">
+                    <p className="title">Middle box</p>
+                    <p className="subtitle">With an image</p>
+                    <figure className="image is-4by3">
                       <img
                         src="https://bulma.io/images/placeholders/640x480.png"
                         alt="Placeholder"
@@ -42,11 +42,11 @@ const Home = () => {
                 </div>
               </div>
             </div>
-            <div class="tile is-parent">
-              <article class="tile is-child box">
-                <p class="title">Middle box</p>
-                <p class="subtitle">With an image</p>
-                <figure class="image is-4by3">
+            <div className="tile is-parent">
+              <article className="tile is-child box">
+                <p className="title">Middle box</p>
+                <p className="subtitle">With an image</p>
+                <figure className="image is-4by3">
                   <img
                     src="https://bulma.io/images/placeholders/640x480.png"
                     alt="Placeholder"
@@ -57,7 +57,7 @@ const Home = () => {
           </div>
         </section>
         <section className="section">
-          <div class="homeButtons">
+          <div className="homeButtons">
             <a href="/search" className="button is-large is-primary is-rounded button-spacing homeButton">
               Diagnose Yourself Now!
             </a>

@@ -6,7 +6,7 @@ import ResultCard from "./ResultCard";
 const ProbableResults = () => {
     return (
       <div>
-        <h1 class="title is-3">You most likely have:</h1>
+        <h1 className="title is-3">You most likely have:</h1>
         <ResultCard />
       </div>
     );

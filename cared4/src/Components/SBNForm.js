@@ -4,20 +4,20 @@ import '../Styles/CustomStyles.css'
 
 const SBNForm = () => {
     return (
-      <div class="card">
-        <div class="card-content">
-          <div class="media">
-            <div class="media-content">
-              <p class="title is-4">Search By Name</p>
+      <div className="card">
+        <div className="card-content">
+          <div className="media">
+            <div className="media-content">
+              <p className="title is-4">Search By Name</p>
             </div>
           </div>
 
-          <div class="content">
-            <div class="field">
-              <label class="label">Please enter the name of the illness</label>
-              <div class="control">
+          <div className="content">
+            <div className="field">
+              <label className="label">Please enter the name of the illness</label>
+              <div className="control">
                 <input
-                  class="input is-primary is-medium"
+                  className="input is-primary is-medium"
                   type="text"
                   placeholder="Illness Name"
                 />
@@ -25,9 +25,9 @@ const SBNForm = () => {
             </div>
 
             <div className="customCard">
-              <div class="field is-grouped">
-                <div class="control">
-                  <button class="button is-primary">Search</button>
+              <div className="field is-grouped">
+                <div className="control">
+                  <button className="button is-primary">Search</button>
                 </div>
               </div>
             </div>

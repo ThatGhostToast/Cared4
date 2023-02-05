@@ -57,8 +57,6 @@ const RegisterForm = () => {
         image: newImage
       };
   
-      console.log(newUser);
-  
       saveUser(newUser);
     };
   
@@ -67,21 +65,22 @@ const RegisterForm = () => {
 
       response = await dataSource.post("/users", user);
 
+      //TODO remove the log statements after we dont need them anymore
       console.log(response);
       console.log(response.data);
-      navigate("/home");
+      navigate("/");
     };  
 
     return (
       <div className="container is-max-desktop">
-        <progress class="progress is-primary" value={progress} max="100" />
+        <progress className="progress is-primary" value={progress} max="100" />
         <form onSubmit={handleFormSubmit}>
           <section>
-            <div class="field">
-              <label class="label">Name</label>
-              <div class="control">
+            <div className="field">
+              <label className="label">Name</label>
+              <div className="control">
                 <input
-                  class="input is-primary is-medium"
+                  className="input is-primary is-medium"
                   type="text"
                   placeholder="First Name"
                   id="firstNameInput"
@@ -89,10 +88,10 @@ const RegisterForm = () => {
                 />
               </div>
             </div>
-            <div class="field">
-              <div class="control">
+            <div className="field">
+              <div className="control">
                 <input
-                  class="input is-primary is-medium"
+                  className="input is-primary is-medium"
                   type="text"
                   placeholder="Last Name"
                   id="lastNameInput"
@@ -101,11 +100,11 @@ const RegisterForm = () => {
               </div>
             </div>
 
-            <div class="field">
-              <label class="label">Email</label>
-              <div class="control">
+            <div className="field">
+              <label className="label">Email</label>
+              <div className="control">
                 <input
-                  class="input is-primary is-medium"
+                  className="input is-primary is-medium"
                   type="email"
                   placeholder="Email"
                   id="emailInput"
@@ -114,10 +113,10 @@ const RegisterForm = () => {
               </div>
             </div>
 
-            <div class="field">
-              <div class="control">
+            <div className="field">
+              <div className="control">
                 <input
-                  class="input is-primary is-medium"
+                  className="input is-primary is-medium"
                   type="email"
                   placeholder="Confirm Email"
                   id="confirmEmailInput"
@@ -125,11 +124,11 @@ const RegisterForm = () => {
               </div>
             </div>
 
-            <div class="field">
-              <label class="label">Password</label>
-              <div class="control">
+            <div className="field">
+              <label className="label">Password</label>
+              <div className="control">
                 <input
-                  class="input is-primary is-medium"
+                  className="input is-primary is-medium"
                   type="password"
                   placeholder="Password"
                   id="passwordInput"
@@ -138,10 +137,10 @@ const RegisterForm = () => {
               </div>
             </div>
 
-            <div class="field">
-              <div class="control">
+            <div className="field">
+              <div className="control">
                 <input
-                  class="input is-primary is-medium"
+                  className="input is-primary is-medium"
                   type="password"
                   placeholder="Confirm Password"
                   id="confirmPasswordInput"
@@ -149,11 +148,11 @@ const RegisterForm = () => {
               </div>
             </div>
 
-            <div class="field">
-              <label class="label">Birthday</label>
-              <div class="control">
+            <div className="field">
+              <label className="label">Birthday</label>
+              <div className="control">
                 <input
-                  class="input is-primary is-medium"
+                  className="input is-primary is-medium"
                   type="date"
                   placeholder="Birthday"
                   id="birthdayInput"
@@ -162,10 +161,10 @@ const RegisterForm = () => {
               </div>
             </div>
 
-            <div class="field">
-              <label class="label">Sex</label>
-              <div class="control">
-                <div class="select is-primary is-medium">
+            <div className="field">
+              <label className="label">Sex</label>
+              <div className="control">
+                <div className="select is-primary is-medium">
                   <select onChange={updateSex}>
                     <option selected="true" disabled>
                       Please select your sex
@@ -178,11 +177,11 @@ const RegisterForm = () => {
               </div>
             </div>
 
-            <div class="field">
-              <label class="label">Previous Medical Conditions</label>
-              <div class="control">
+            <div className="field">
+              <label className="label">Previous Medical Conditions</label>
+              <div className="control">
                 <input
-                  class="input is-primary is-medium"
+                  className="input is-primary is-medium"
                   type="text"
                   placeholder="Please input any past medical issues seperated with a comma"
                   id="conditionsInput"
@@ -191,11 +190,11 @@ const RegisterForm = () => {
               </div>
             </div>
 
-            <div class="field">
-              <label class="label">Profile Picture</label>
-              <div class="control">
+            <div className="field">
+              <label className="label">Profile Picture</label>
+              <div className="control">
                 <input
-                  class="input is-primary is-medium"
+                  className="input is-primary is-medium"
                   type="file"
                   accept="image/*"
                   id="imageInput"
@@ -204,21 +203,21 @@ const RegisterForm = () => {
               </div>
             </div>
 
-            <div class="field">
-              <div class="control">
-                <label class="checkbox">
+            <div className="field">
+              <div className="control">
+                <label className="checkbox">
                   <input type="checkbox" />I agree to the{" "}
                   <a href="/terms">terms and conditions</a>
                 </label>
               </div>
             </div>
 
-            <div class="field is-grouped">
-              <div class="control">
-                <button class="button is-primary" type="submit">Submit</button>
+            <div className="field is-grouped">
+              <div className="control">
+                <button className="button is-primary" type="submit">Submit</button>
               </div>
-              <div class="control">
-                <a class="button is-primary is-outlined" href="/login">
+              <div className="control">
+                <a className="button is-primary is-outlined" href="/login">
                   Login
                 </a>
               </div>
