@@ -1,6 +1,6 @@
 import React from "react";
-import '../Styles/Bulma.css'
-import '../Styles/CustomStyles.css'
+import '../../Styles/Bulma.css'
+import '../../Styles/CustomStyles.css'
 import ResultCard from "./ResultCard";
 
 const ProbableResults = () => {

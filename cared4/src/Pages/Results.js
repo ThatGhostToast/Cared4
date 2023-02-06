@@ -1,7 +1,7 @@
 import React from "react";
-import NavBar from "../Components/NavBar";
-import ProbableResults from "../Components/ProbableResults";
-import PossibleResults from "../Components/PossibleResults";
+import NavBar from "../Components/Navbars/NavBar";
+import ProbableResults from "../Components/Diagnosis/ProbableResults";
+import PossibleResults from "../Components/Diagnosis/PossibleResults";
 
 const Results = () => {
     return (

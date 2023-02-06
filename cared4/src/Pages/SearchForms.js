@@ -1,7 +1,7 @@
 import React from "react";
-import NavBar from "../Components/NavBar";
-import SBNForm from "../Components/SBNForm";
-import SBSForm from "../Components/SBSForm";
+import NavBar from "../Components/Navbars/NavBar";
+import SBNForm from "../Components/Diagnosis/SBNForm";
+import SBSForm from "../Components/Diagnosis/SBSForm";
 
 const SearchForms = () => {
     return (

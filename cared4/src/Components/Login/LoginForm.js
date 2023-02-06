@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import '../Styles/Bulma.css'
-import '../Styles/CustomStyles.css'
-import logo from '../Assets/OriginalLogos/Cared4-logos_transparent.png'
-import dataSource from "../dataSource";
+import { createSearchParams, useNavigate } from "react-router-dom";
+import '../../Styles/Bulma.css'
+import '../../Styles/CustomStyles.css'
+import logo from '../../Assets/OriginalLogos/Cared4-logos_transparent.png'
+import dataSource from "../../dataSource";
 
 const LoginForm = () => {
     const [userEmail, setUserEmail] = useState('');
@@ -43,10 +43,20 @@ const LoginForm = () => {
         navigate("/");
       } else if (response.status === 201) {
         //Incorrect Password
-        navigate("/login");
+        navigate({
+            pathname: "/login",
+            search: createSearchParams({
+              id: "passFail"
+            }).toString()
+        });
       } else {
         //User not found
-        navigate("/login");
+        navigate({
+            pathname: "/login",
+            search: createSearchParams({
+              id: "emailFail"
+            }).toString()
+        });
       }
     };  
 

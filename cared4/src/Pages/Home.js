@@ -1,5 +1,5 @@
 import React from 'react';
-import NavBar from '../Components/NavBar';
+import NavBar from '../Components/Navbars/NavBar';
 import '../Styles/CustomStyles.css'
 import '../Styles/Bulma.css'
   
