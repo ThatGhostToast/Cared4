@@ -65,10 +65,10 @@ const Home = () => {
               Want More Accurate Results?
               <br /> Create an Account!
             </a>
-            <button className="button is-large is-primary is-rounded button-spacing homeButton">
+            <a className="button is-large is-primary is-rounded button-spacing homeButton" href='/results'>
               Feeling a Little Ill?
               <br /> See Most Common Illnesses
-            </button>
+            </a>
           </div>
         </section>
       </div>

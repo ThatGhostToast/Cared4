@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import dataSource from "./dataSource";
 import Home from './Pages/Home';
 import About from "./Pages/About";
 import './Styles/App.css';
@@ -13,21 +12,6 @@ import CloseUp from "./Pages/CloseUp";
 import Results from "./Pages/Results";
 
 const App = () => {
-  const [illnessList, setIllnessList] = useState([]);
-  let refresh = false;
-
-  //Method to get the illnesses from the API
-  const loadIllnesses = async () => {
-    const response = await dataSource.get('/sicknesses');
-    setIllnessList(response.data);
-  }
-
-  useEffect(() => {
-    loadIllnesses();
- }, [refresh])
-
- console.log('illnessList', illnessList);
-
   return (
     <Router>
       <Routes>
