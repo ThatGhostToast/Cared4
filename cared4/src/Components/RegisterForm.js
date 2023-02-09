@@ -16,6 +16,7 @@ const RegisterForm = () => {
     const [newPreviousConditions, setNewPreviousConditions] = useState('');
     const [newImage, setNewImage] = useState('');
     const navigate = useNavigate();
+    const API_KEY = process.env.REACT_APP_API_KEY
 
     const updateFirstName = (event) => {
       setNewFirstName(event.target.value);
@@ -54,7 +55,8 @@ const RegisterForm = () => {
         birthday: newBirthday,
         sex: newSex,
         conditions: newPreviousConditions,
-        image: newImage
+        image: newImage,
+        key: API_KEY
       };
   
       saveUser(newUser);

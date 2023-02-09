@@ -9,6 +9,7 @@ const LoginForm = () => {
     const [userEmail, setUserEmail] = useState('');
     const [userPassword, setUserPassword] = useState('');
     const navigate = useNavigate();
+    const API_KEY = process.env.REACT_APP_API_KEY
 
     const updateEmail = (event) => {
       setUserEmail(event.target.value);
@@ -24,6 +25,7 @@ const LoginForm = () => {
       const User = {
         email: userEmail,
         password: userPassword,
+        key: API_KEY
       };
   
       saveUser(User);
