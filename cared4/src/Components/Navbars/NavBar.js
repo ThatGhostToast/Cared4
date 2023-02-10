@@ -1,8 +1,12 @@
 import React from "react";
+import logo from '../../Assets/OriginalLogos/Cared4-logos_transparent.png'
 import '../../Styles/Bulma.css'
 import '../../Styles/CustomStyles.css'
-import logo from '../../Assets/OriginalLogos/Cared4-logos_transparent.png'
 
+/**
+ * Default NavBar
+ * @returns returns the navbar
+ */
 const NavBar = () => {
     return (
         <nav className="navbar is-fixed-top backdrop" role="navigation" aria-label="main navigation">

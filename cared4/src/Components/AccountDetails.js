@@ -2,9 +2,15 @@ import React from "react";
 import '../Styles/Bulma.css'
 import '../Styles/CustomStyles.css'
 
+/**
+ * Component used to hold user account details and display them to the user
+ * @returns Returns the users formatted information 
+ */
 const AccountDetails = () => {
+    //Setting the profile picture to this default image (NOTE: THIS WILL BE REPLACED WITH A USER'S PROFILE PICTURE)
     let userImage = "https://bulma.io/images/placeholders/128x128.png";
 
+    //Return the users formatted information
     return (
       <div className="container is-max-desktop custom-container">
         <section className="section">

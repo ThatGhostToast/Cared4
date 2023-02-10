@@ -2,6 +2,11 @@ import React from "react";
 import '../../Styles/Bulma.css'
 import '../../Styles/CustomStyles.css'
 
+/**
+ * Card used to display basic illness details. A user can see more details if they click the button at the bottom of the card
+ * TODO take in illness information
+ * @returns Returns a card of data
+ */
 const ResultCard = () => {
     return (
       <div>

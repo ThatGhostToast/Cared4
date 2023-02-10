@@ -1,52 +1,76 @@
 import React, { useState } from "react";
-import '../Styles/Bulma.css'
-import '../Styles/CustomStyles.css'
 import { useNavigate } from "react-router-dom";
 import dataSource from "../dataSource.js";
+import '../Styles/Bulma.css'
+import '../Styles/CustomStyles.css'
 
 const RegisterForm = () => {
+    // Progress bar showing the user how complete registration is
     let progress = 0;
 
+    // Variable used to hold the new user's first name
     const [newFirstName, setNewFirstName] = useState('');
+    // Variable used to hold the new user's last name
     const [newLastName, setNewLastName] = useState('');
+    // Variable used to hold the new user's email
     const [newEmail, setNewEmail] = useState('');
+    // Variable used to hold the new user's password
     const [newPassword, setNewPassword] = useState('');
+    // Variable used to hold the new user's birthday
     const [newBirthday, setNewBirthday] = useState('');
+    // Variable used to hold the new user's sex
     const [newSex, setNewSex] = useState('');
+    // Variable used to hold the new user's previous conditions
     const [newPreviousConditions, setNewPreviousConditions] = useState('');
+    // Variable used to hold the new user's profile picture
     const [newImage, setNewImage] = useState('');
-    const navigate = useNavigate();
+    // Key used to authenticate API access
     const API_KEY = process.env.REACT_APP_API_KEY
+    // Navigational tool used to navigate the user and their data
+    const navigate = useNavigate();
 
+    // Function used to update the 'newFirstName' variable
     const updateFirstName = (event) => {
       setNewFirstName(event.target.value);
     };
+    // Function used to update the 'newLastName' variable
     const updateLastName = (event) => {
       setNewLastName(event.target.value);
     };
+    // Function used to update the 'newEmail' variable
     const updateEmail = (event) => {
       setNewEmail(event.target.value);
     };
+    // Function used to update the 'newPassword' variable
     const updatePassword = (event) => {
       setNewPassword(event.target.value);
     };
+    // Function used to update the 'newBirthday' variable
     const updateBirthday = (event) => {
       setNewBirthday(event.target.value);
-    }
+    };
+    // Function used to update the 'newSex' variable
     const updateSex = (event) => {
       setNewSex(event.target.value);
     };
+    // Function used to update the 'newPreviousConditions' variable
     const updateConditions = (event) => {
       setNewPreviousConditions(event.target.value);
     };
+    // Function used to update the 'newImage' variable
     const updateImage = (event) => {
       setNewImage(event.target.value);
     };
   
+    // Function used to handle form submission
     const handleFormSubmit = (event) => {
+      //Prevents the defaul action so we can use our own submit function
       event.preventDefault();
   
+      //Logging that the form was submitted
       console.log("submit");
+
+      //Creating the new user object to be sent to the API
       const newUser = {
         firstName: newFirstName,
         lastName: newLastName,
@@ -59,20 +83,22 @@ const RegisterForm = () => {
         key: API_KEY
       };
   
+      //Calling saveUser to send the information to the database
       saveUser(newUser);
     };
   
+    // Function used to call the API
     const saveUser = async (user) => {
-      let response;
+      //Calling the API and saving the response 
+      let response = await dataSource.post("/users", user);
 
-      response = await dataSource.post("/users", user);
-
-      //TODO remove the log statements after we dont need them anymore
-      console.log(response);
-      console.log(response.data);
+      //Logging the registration status
+      console.log("REGISTRATION STATUS: " + response.status);
+      //Navigate back to the homepage
       navigate("/");
     };  
 
+    //Return the register form
     return (
       <div className="container is-max-desktop">
         <progress className="progress is-primary" value={progress} max="100" />

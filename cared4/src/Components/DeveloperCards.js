@@ -1,9 +1,14 @@
 import React from "react";
+import headshot from '../Assets/img/Almas_Zachary_Headshot.png'
 import '../Styles/Bulma.css'
 import '../Styles/CustomStyles.css'
-import headshot from '../Assets/img/Almas_Zachary_Headshot.png'
 
+/**
+ * Card used to display the developer and their intro
+ * @returns Returns a card displaying the developer
+ */
 const DevCards = () => {
+    //Return the dev card
     return (
       <div className="profile-cards cardStyles">
         <div className="card">

@@ -1,8 +1,7 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React from "react";
 import Home from './Pages/Home';
 import About from "./Pages/About";
-import './Styles/App.css';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Terms from './Pages/Terms&Conditions';
@@ -10,7 +9,12 @@ import SearchForms from './Pages/SearchForms';
 import Account from './Pages/Account';
 import CloseUp from "./Pages/CloseUp";
 import Results from "./Pages/Results";
+import './Styles/App.css';
 
+/**
+ * Main application brain and routes
+ * @returns Returns the application
+ */
 const App = () => {
   return (
     <Router>

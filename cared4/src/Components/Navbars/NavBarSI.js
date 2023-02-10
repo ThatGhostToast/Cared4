@@ -1,8 +1,12 @@
 import React from "react";
+import logo from '../Assets/OriginalLogos/Cared4-logos_transparent.png'
 import '../Styles/Bulma.css'
 import '../Styles/CustomStyles.css'
-import logo from '../Assets/OriginalLogos/Cared4-logos_transparent.png'
 
+/**
+ * Navbar for when the user is signed in
+ * @returns Returns the navbar
+ */
 const NavBarSI = () => {
     return (
       <nav

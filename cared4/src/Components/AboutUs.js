@@ -2,7 +2,12 @@ import React from "react";
 import '../Styles/Bulma.css'
 import '../Styles/CustomStyles.css'
 
+/**
+ * Component that displays the about us content 
+ * @returns Returns the about us content
+ */
 const AboutUs = () => {
+    //Return the about us content
     return (
         <div className="about-cared4">
             <p>

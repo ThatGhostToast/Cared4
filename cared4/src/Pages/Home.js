@@ -3,7 +3,12 @@ import NavBar from '../Components/Navbars/NavBar';
 import '../Styles/CustomStyles.css'
 import '../Styles/Bulma.css'
   
+/**
+ * Home page that displays the main page of the application
+ * @returns Returns the home page
+ */
 const Home = () => {
+  //Return the page created with components
   return (
     <div className="page">
       <section className="section">

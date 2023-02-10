@@ -1,7 +1,12 @@
 import React from "react";
 import NavBar from "../Components/Navbars/NavBar";
 
+/**
+ * Closeup page that displays illness information
+ * @returns Returns the closeup page
+ */
 const CloseUp = () => {
+    //Return the page created with components
     return (
       <div className="container is-max-desktop">
         <section className="section">

@@ -3,7 +3,12 @@ import NavBar from "../Components/Navbars/NavBar";
 import SBNForm from "../Components/Diagnosis/SBNForm";
 import SBSForm from "../Components/Diagnosis/SBSForm";
 
+/**
+ * Search forms page that displays the search forms users can use to search for an illness
+ * @returns Returns the search forms page
+ */
 const SearchForms = () => {
+    //Return the page created with components
     return (
         <div>
             <section className="section">
