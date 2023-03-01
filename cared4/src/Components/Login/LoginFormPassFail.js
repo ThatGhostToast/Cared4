@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { createSearchParams, useNavigate } from "react-router-dom";
-import logo from '../../Assets/OriginalLogos/Cared4-logos_transparent.png'
+import logo from '../../Assets/Logos/ColoredLogo.png'
 import dataSource from "../../dataSource";
 import '../../Styles/Bulma.css'
 import '../../Styles/CustomStyles.css'
@@ -82,7 +82,7 @@ const LoginFormPassFail = () => {
     <div className="container is-max-desktop">
       <section>
         <div className="cared4Logo">
-          <img src={logo} alt="logo" />
+          <img src={logo} alt="logo" className="loginLogoImage"/>
         </div>
       </section>
       <form onSubmit={handleFormSubmit}>

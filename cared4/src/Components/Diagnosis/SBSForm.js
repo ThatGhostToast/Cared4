@@ -11,6 +11,7 @@ import '../../Styles/CustomStyles.css'
 const SBSForm = () => {
     // Illness symptoms being used to search the database
     const [illnessSymptoms, setIllnessSymptoms] = useState('');
+
     // Navigational tool used to navigate the user and their data
     const navigate = useNavigate();
 
@@ -42,6 +43,7 @@ const SBSForm = () => {
 
       //If the API responds with a status of 200 then the process was a success and the application can continue
       if (response.status === 200) {
+        sessionStorage.setItem('probIllness', JSON.stringify(response.data));
         //Navigate to the results of the search
         navigate("/results");
       //If the API responds with a status of 201 then no results were found from the search

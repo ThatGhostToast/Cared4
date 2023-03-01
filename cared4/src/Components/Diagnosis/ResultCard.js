@@ -7,7 +7,7 @@ import '../../Styles/CustomStyles.css'
  * TODO take in illness information
  * @returns Returns a card of data
  */
-const ResultCard = () => {
+const ResultCard = (props) => {
     return (
       <div>
         <div className="card">
@@ -22,13 +22,14 @@ const ResultCard = () => {
                 </figure>
               </div>
               <div className="media-content">
-                <p className="title is-4">Common Illness Name</p>
-                <p className="subtitle is-6">Scientific Illness Name</p>
+                <p className="title is-4">{props.commonName}</p>
+                <p className="subtitle is-6">{props.name}</p>
               </div>
             </div>
 
             <div className="content">
-              <p>Symptom list</p>
+              <p><strong>Commonly Affects: </strong>{props.commonTargets}</p>
+              <p><strong>Symptoms: </strong>{props.symptoms}</p>
             </div>
             <div className="content">
               <a className="button is-primary" href="/closeup">View</a>

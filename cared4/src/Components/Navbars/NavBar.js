@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../../Assets/OriginalLogos/Cared4-logos_transparent.png'
+import logo from '../../Assets/Logos/ColoredLogoMark.png'
 import '../../Styles/Bulma.css'
 import '../../Styles/CustomStyles.css'
 
@@ -12,7 +12,7 @@ const NavBar = () => {
         <nav className="navbar is-fixed-top backdrop" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <a className="navbar-item" href="/">
-                    <img src={logo} alt="Logo"/>
+                    <img src={logo} alt="Logo" className="logoSize"/>
                 </a>
 
                 <button className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">

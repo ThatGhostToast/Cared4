@@ -8,13 +8,20 @@ import '../../Styles/CustomStyles.css'
  * TODO A for loop needs to be implemented to display a result card for everything returned from the API
  * @returns Returns a section that displays the illness cards 
  */
-const ProbableResults = () => {
+const ProbableResults = (props) => {
+  var illnesses = sessionStorage.getItem('probIllness');
+  var illnessParse = JSON.parse(illnesses);
+
+  const cards = illnessParse.map((data) => {
     return (
       <div>
-        <h1 className="title is-3">You most likely have:</h1>
-        <ResultCard />
+        <ResultCard  
+          commonName = {data.commonName} name={data.name} symptoms={data.symptoms} commonTargets={data.commonTargets}/>
+          <br />
       </div>
     );
+  });
+  return <div>{cards}</div>
 };
 
 export default ProbableResults;

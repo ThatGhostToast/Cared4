@@ -1,5 +1,5 @@
 import React from "react";
-import logo from '../Assets/OriginalLogos/Cared4-logos_transparent.png'
+import logo from '../Assets/Logos/ColoredLogoMark.png'
 import '../Styles/Bulma.css'
 import '../Styles/CustomStyles.css'
 

@@ -1,7 +1,7 @@
 .backdrop {
     outline-style: solid;
     outline-width: medium;
-    color: #9AEBA3;
+    color: #4e8d51;
     padding: 1%;
     flex: 1;
     position: fixed;
@@ -58,11 +58,15 @@
     border-radius: 25px;
     outline-style: solid;
     outline-width: thick;
-    outline-color: rgb(29, 206, 29);
+    outline-color: #4e8d51;
 }
 
 .content-squish{
     padding-top: 0;
+}
+
+.content-squish-bottom{
+    padding-bottom: 0;
 }
 
 .custom-container{
@@ -76,6 +80,6 @@
     padding-top: 0;
 }
 
-.sickness-image{
-    
+.loginLogoImage{
+    width: 45%;
 }

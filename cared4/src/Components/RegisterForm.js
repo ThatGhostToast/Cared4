@@ -6,6 +6,7 @@ import '../Styles/CustomStyles.css'
 
 const RegisterForm = () => {
     // Progress bar showing the user how complete registration is
+    //const [progress, setProgress] = useState(0);
     let progress = 0;
 
     // Variable used to hold the new user's first name
