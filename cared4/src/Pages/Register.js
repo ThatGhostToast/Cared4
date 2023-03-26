@@ -9,6 +9,9 @@ import '../Styles/Bulma.css'
  * @returns Returns the register page
  */
 const Register = () => {
+    //Document the tab
+    document.title = "Cared4 - Register";
+
     //Return the page created with components
     return (
         <div>

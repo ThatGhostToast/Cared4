@@ -1,7 +1,7 @@
 import React from "react";
-import logo from '../Assets/Logos/ColoredLogoMark.png'
-import '../Styles/Bulma.css'
-import '../Styles/CustomStyles.css'
+import logo from '../../Assets/Logos/ColoredLogoMark.png'
+import '../../Styles/Bulma.css'
+import '../../Styles/CustomStyles.css'
 
 /**
  * Navbar for when the user is signed in
@@ -35,12 +35,12 @@ const NavBarSI = () => {
 
         <div id="navbarBasicExample" className="navbar-menu navBar">
           <div className="navBar-link">
-            <a className="navbar-item" href="/search">
+            <a className="button is-primary is-inverted" href="/search">
               Search for an Illness
             </a>
           </div>
           <div className="navBar-link">
-            <a className="navbar-item" href="/about">
+            <a className="button is-primary is-inverted" href="/about">
               About Us
             </a>
           </div>

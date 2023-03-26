@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../Components/Navbars/NavBar";
+import NavBarSI from "../Components/Navbars/NavBarSI";
 import AccountDetails from "../Components/AccountDetails";
 
 /**
@@ -7,11 +7,14 @@ import AccountDetails from "../Components/AccountDetails";
  * @returns Returns the account page
  */
 const Account = () => {
+    //Document the tab
+    document.title = "Cared4 - Account";
+
     //Return the page created with components
     return (
       <div>
         <section className="section">
-          <NavBar />
+          <NavBarSI />
         </section>
         <section>
           <AccountDetails />

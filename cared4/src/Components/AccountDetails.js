@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import '../Styles/Bulma.css'
 import '../Styles/CustomStyles.css'
 
@@ -7,8 +8,29 @@ import '../Styles/CustomStyles.css'
  * @returns Returns the users formatted information 
  */
 const AccountDetails = () => {
+    //Navigational tool used to get around the application
+    const navigate = useNavigate();
+
+    //Getting the user data from the session
+    const user = JSON.parse(sessionStorage.getItem('loggedInUserEmail'));
+
     //Setting the profile picture to this default image (NOTE: THIS WILL BE REPLACED WITH A USER'S PROFILE PICTURE)
     let userImage = "https://bulma.io/images/placeholders/128x128.png";
+
+    //Function used to logout the user
+    const logoutHandler = (event) => {
+      //Prevents the defaul action so we can use our own submit function
+      event.preventDefault();
+
+      //Removing the user details from session storage
+      sessionStorage.removeItem('loggedInUserEmail');
+
+      //Writing to the console the status of the logout
+      console.log('logged out');
+
+      //Navigate the user back to home
+      navigate("/");
+    }
 
     //Return the users formatted information
     return (
@@ -23,7 +45,7 @@ const AccountDetails = () => {
             <tbody>
               <tr>
                 <td>
-                  <strong>First Name</strong>
+                  <strong>{user.firstName}</strong>
                 </td>
                 <td></td>
                 <td></td>
@@ -39,7 +61,7 @@ const AccountDetails = () => {
               </tr>
               <tr>
                 <td>
-                  <strong>Last Name</strong>
+                  <strong>{user.lastName}</strong>
                 </td>
                 <td></td>
                 <td></td>
@@ -55,7 +77,7 @@ const AccountDetails = () => {
               </tr>
               <tr>
                 <td>
-                  <strong href="/">Email</strong>
+                  <strong>{user.email}</strong>
                 </td>
                 <td></td>
                 <td></td>
@@ -75,7 +97,7 @@ const AccountDetails = () => {
               </tr>
               <tr>
                 <td>
-                  <strong href="/">Password</strong>
+                  <strong>{user.password}</strong>
                 </td>
                 <td></td>
                 <td></td>
@@ -95,7 +117,7 @@ const AccountDetails = () => {
               </tr>
               <tr>
                 <td>
-                  <strong href="/">Birthday</strong>
+                  <strong>{user.birthday}</strong>
                 </td>
                 <td></td>
                 <td></td>
@@ -115,7 +137,7 @@ const AccountDetails = () => {
               </tr>
               <tr>
                 <td>
-                  <strong href="/">Sex</strong>
+                  <strong>{user.sex}</strong>
                 </td>
                 <td></td>
                 <td></td>
@@ -135,7 +157,7 @@ const AccountDetails = () => {
               </tr>
               <tr>
                 <td>
-                  <strong href="/">Previous Conditions</strong>
+                  <strong>{user.conditions}</strong>
                 </td>
                 <td></td>
                 <td></td>
@@ -156,7 +178,7 @@ const AccountDetails = () => {
             </tbody>
           </table>
         </section>
-        <a className="button is-primary logout" href="/">Logout</a>
+        <button className="button is-danger logout" onClick={logoutHandler}>Logout</button>
       </div>
     );
 };

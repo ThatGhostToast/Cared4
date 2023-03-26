@@ -54,6 +54,12 @@ const LoginForm = () => {
 
     //If the API responds with a status of 200 then the process was a success and the application can continue
     if (response.status === 200) {
+      //Saving the logged in user's email
+      var apiResponse = JSON.stringify(response.data);
+      
+      //Setting the email to a session variable
+      sessionStorage.setItem('loggedInUserEmail', apiResponse);
+
       //Navigate back to the homepage
       navigate("/");
       //If the API responds with a status of 201 then the user entered the wrong password

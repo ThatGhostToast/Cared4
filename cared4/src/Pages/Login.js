@@ -12,6 +12,9 @@ import '../Styles/Bulma.css'
  * @returns Returns the login form page
  */
 const Login = () => {
+    //Document the tab
+    document.title = "Cared4 - Login";
+
     //Saving the error (if there is one) that will determine which form is displayed
     const [searchparams] = useSearchParams();
 

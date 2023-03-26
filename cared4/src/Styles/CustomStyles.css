@@ -83,3 +83,26 @@
 .loginLogoImage{
     width: 45%;
 }
+
+.hici{
+    padding: 20px;
+    padding-bottom: 0;
+}
+
+.homeViewButton{
+    padding-top: 10px;
+}
+
+.cardFlex{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cusCard{
+    margin: 1%;
+    flex: 1;
+}
+
+/** Tablet Styles **/
+
+/** Mobile Styles **/

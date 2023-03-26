@@ -1,13 +1,33 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import '../../Styles/Bulma.css'
 import '../../Styles/CustomStyles.css'
 
 /**
  * Card used to display basic illness details. A user can see more details if they click the button at the bottom of the card
- * TODO take in illness information
  * @returns Returns a card of data
  */
 const ResultCard = (props) => {
+      // Navigational tool used to navigate the user and their data
+    const navigate = useNavigate();
+
+    //Function used to navigate the user and the illness properties
+    const onClickHandler = () =>{
+      navigate('/closeup', { state: {
+        id: props.id,
+        commonName: props.commonName,
+        name: props.name,
+        symptoms: props.symptoms,
+        commonTargets: props.commonTargets,
+        description: props.description,
+        rarity: props.rarity,
+        severity: props.severity,
+        treatment: props.treatment,
+        requirements: props.requirements
+        }
+      });
+    }
+  
     return (
       <div>
         <div className="card">
@@ -32,7 +52,7 @@ const ResultCard = (props) => {
               <p><strong>Symptoms: </strong>{props.symptoms}</p>
             </div>
             <div className="content">
-              <a className="button is-primary" href="/closeup">View</a>
+              <button className="button is-primary" onClick={onClickHandler}>View</button>
             </div>
           </div>
         </div>

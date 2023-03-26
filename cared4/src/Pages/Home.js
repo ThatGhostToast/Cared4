@@ -1,5 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import NavBar from '../Components/Navbars/NavBar';
+import NavBarSI from '../Components/Navbars/NavBarSI'
+import HomeButtons from "../Components/HomeButtons/HomeButtons";
+import HomeButtonsSI from "../Components/HomeButtons/HomeButtonsSI";
+import HomeCards from '../Components/HomeCards';
+import dataSource from "../dataSource.js";
 import '../Styles/CustomStyles.css'
 import '../Styles/Bulma.css'
   
@@ -8,73 +13,66 @@ import '../Styles/Bulma.css'
  * @returns Returns the home page
  */
 const Home = () => {
+  //Document the tab
+  document.title = "Cared4";
+
+  //List of random illnesses returned from the api
+  const [randomIllnesses, setRandomIllnesses] = useState([]);
+
+  //Set the refresh to false
+  let refresh = false;
+
+  //Method to get the illnesses from the API
+  const loadIllnesses = async () => {
+    //Calling the api and saving the response
+    const response = await dataSource.get("/sicknesses/random");
+    //Updating the list
+    setRandomIllnesses(response.data);
+  };
+
+  //Function to load users from the database when the page is accessed
+  useEffect(() => {
+    loadIllnesses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refresh]);
+
+  //Getting the user info
+  var loggedIn = sessionStorage.getItem('loggedInUserEmail');
+
+  //Checking to see what navbar needs to be displayed
+  const chooseNav = () => {
+    if (!loggedIn){
+      return (<NavBar />)
+    } else {
+      return (<NavBarSI />)
+    }
+  };
+
+  //Checking to see what buttons need to be displayed
+  const chooseButtons = () => {
+    if (!loggedIn){
+      return (<HomeButtons />)
+    } else {
+      return (<HomeButtonsSI />)
+    }
+  }
+
   //Return the page created with components
   return (
     <div className="page">
       <section className="section">
         <div>
-          <NavBar />
+          {chooseNav()}
         </div>
       </section>
       <div className="content">
-        <section className="section">
-          <div className="tile is-ancestor">
-            <div className="tile is-vertical is-8">
-              <div className="tile">
-                <div className="tile is-parent">
-                  <article className="tile is-child box">
-                    <p className="title">Middle box</p>
-                    <p className="subtitle">With an image</p>
-                    <figure className="image is-4by3">
-                      <img
-                        src="https://bulma.io/images/placeholders/640x480.png"
-                        alt="Placeholder"
-                      />
-                    </figure>
-                  </article>
-                </div>
-                <div className="tile is-parent">
-                  <article className="tile is-child box">
-                    <p className="title">Middle box</p>
-                    <p className="subtitle">With an image</p>
-                    <figure className="image is-4by3">
-                      <img
-                        src="https://bulma.io/images/placeholders/640x480.png"
-                        alt="Placeholder"
-                      />
-                    </figure>
-                  </article>
-                </div>
-              </div>
-            </div>
-            <div className="tile is-parent">
-              <article className="tile is-child box">
-                <p className="title">Middle box</p>
-                <p className="subtitle">With an image</p>
-                <figure className="image is-4by3">
-                  <img
-                    src="https://bulma.io/images/placeholders/640x480.png"
-                    alt="Placeholder"
-                  />
-                </figure>
-              </article>
-            </div>
+        <section className="section content-squish-bottom content-squish">
+          <div className="homeCardPositions">
+            <HomeCards data={randomIllnesses}/>
           </div>
         </section>
         <section className="section">
-          <div className="homeButtons">
-            <a href="/search" className="button is-large is-primary is-rounded button-spacing homeButton">
-              Diagnose Yourself Now!
-            </a>
-            <a className="button is-large is-primary is-rounded button-spacing homeButton" href="/register">
-              Want More Accurate Results?
-              <br /> Create an Account!
-            </a>
-            <a className="button is-large is-primary is-rounded button-spacing homeButton" href='/results'>
-              Feeling a Little Ill?
-              <br /> See Most Common Illnesses
-            </a>
-          </div>
+          {chooseButtons()}
         </section>
       </div>
     </div>
