@@ -95,8 +95,27 @@ const RegisterForm = () => {
 
       //Logging the registration status
       console.log("REGISTRATION STATUS: " + response.status);
-      //Navigate back to the homepage
-      navigate("/");
+
+      //Generating the signed in user to reflect registration
+      const newUser = {
+        email: user.email,
+        password: user.password,
+        key: API_KEY,
+      }
+
+      if(response.status === 200) {
+        //Getting user verification and signing in the user
+        let userApiResponse = await dataSource.post("/users/login", newUser);
+        var userRespo = JSON.stringify(userApiResponse.data);
+
+        //Setting the email to a session variable
+        sessionStorage.setItem('loggedInUserEmail', userRespo);
+
+        //Navigate back to the homepage
+        navigate("/");
+      } else {
+        console.log("Uh Oh... Something went wrong!");
+      }
     };  
 
     //Return the register form
