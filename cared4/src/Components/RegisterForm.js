@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { uploadToS3 } from "../s3.js";
-import { getPresignedUrl } from "../s3.js";
 import dataSource from "../dataSource.js";
 import '../Styles/Bulma.css'
 import '../Styles/CustomStyles.css'
@@ -25,6 +24,8 @@ const RegisterForm = () => {
     const [newImage, setNewImage] = useState(null);
     // Variable used to check if a required input is not included
     const [errors, setErrors] = useState(true);
+    //Submitting the user profile picture to an AWS S3 bucket
+    const [imgUrl, setImgUrl] = useState(null);
     // Key used to authenticate API access
     const API_KEY = process.env.REACT_APP_API_KEY
     // Navigational tool used to navigate the user and their data
@@ -78,17 +79,15 @@ const RegisterForm = () => {
       //Logging that the form was submitted
       console.log("submit");
 
-      //Submitting the user profile picture to an AWS S3 bucket
-      var presignedUrl = '';
       if (newImage) {
         const response = await uploadToS3(newImage);
         console.log('File uploaded successfully:', response);
     
         // Get the pre-signed URL
-        presignedUrl = getPresignedUrl(response.Key);
-        console.log('Pre-signed URL:', presignedUrl);
+        setImgUrl(response.Location);
+        console.log('Image URL:', imgUrl);
       } else {
-        console.log('Please select a file to upload.');
+        setImgUrl("https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png");
       }
 
       //Creating the new user object to be sent to the API
@@ -100,7 +99,7 @@ const RegisterForm = () => {
         birthday: newBirthday,
         sex: newSex,
         conditions: newPreviousConditions,
-        image: presignedUrl,
+        image: imgUrl,
         key: API_KEY
       };
   

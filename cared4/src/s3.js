@@ -3,9 +3,9 @@ import AWS from 'aws-sdk';
 
 // Configure the AWS SDK with your credentials
 AWS.config.update({
-  accessKeyId: 'AKIA4BI3PUVO2VGM6Y6L',
-  secretAccessKey: 'ni74NT0L8Ff8CphDrjyM2vbR+7U3/fWwJtsJ+j6V',
-  region: 'us-west-1'
+  accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+  region: process.env.REACT_APP_AWS_REGION
 });
 
 const s3 = new AWS.S3();
@@ -24,38 +24,13 @@ export async function uploadToS3(file) {
   return new Promise((resolve, reject) => {
     s3.upload(params, (err, data) => {
       if (err) {
+        console.error("Upload Error: ", err);
         reject(err);
       } else {
-        resolve(data);
+        console.log("Upload Data: ", data);
+        const imageUrl = `https://${params.Bucket}.s3-${AWS.config.region}.amazonaws.com/${params.Key}`;
+        resolve({ ...data, Location: imageUrl});
       }
     });
   });
 }
-
-//Function used to get the url of the image inside of the bucket
-export function getPresignedUrl(key, expiration = 60) {
-    const params = {
-      Bucket: 'cared4-assets',
-      Key: key,
-      Expires: expiration, // URL expiration time in seconds
-    };
-  
-    return s3.getSignedUrl('getObject', params);
-}
-
-//Function to get the specific image
-export async function listImages() {
-    const params = {
-      Bucket: 'cared4-assets'
-    };
-  
-    return new Promise((resolve, reject) => {
-      s3.listObjectsV2(params, (err, data) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(data);
-        }
-      });
-    });
-}  
