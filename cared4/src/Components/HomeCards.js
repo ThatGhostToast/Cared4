@@ -16,7 +16,7 @@ const HomeCards = (props) => {
     return (
       <div className="cusCard">
         <HomeIllnessCard  
-          key={data.id} id={data.id} commonName={data.commonName} name={data.name} symptoms={data.symptoms} commonTargets={data.commonTargets} description={data.description} rarity={data.rarity} severity={data.severity} requirements={data.requirements} treatment={data.treatment}/>
+          key={data.id} id={data.id} commonName={data.commonName} name={data.name} symptoms={data.symptoms} commonTargets={data.commonTargets} description={data.description} rarity={data.rarity} severity={data.severity} requirements={data.requirements} treatment={data.treatment} image={data.image}/>
           <br />
       </div>
     );

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { listImages } from "../s3.js";
 import dataSource from "../dataSource.js";
 import '../Styles/Bulma.css'
 import '../Styles/CustomStyles.css'
@@ -26,6 +27,9 @@ const AccountDetails = () => {
     const [updatedSex, setUpdatedSex] = useState(user.sex);
     // Variable used to hold the new user's previous conditions
     const [updatedPreviousConditions, setUpdatedPreviousConditions] = useState(user.conditions);
+    // Variable used to set the user image
+    const [imgUrl] = useState(user.image);
+    const [userImage, setUserImage] = useState(user.image);
     // Key used to authenticate API access
     const API_KEY = process.env.REACT_APP_API_KEY
     //Navigational tool used to get around the application
@@ -67,8 +71,25 @@ const AccountDetails = () => {
       setConditionsReadonly(false);
     }
 
-    //Setting the profile picture to this default image (NOTE: THIS WILL BE REPLACED WITH A USER'S PROFILE PICTURE)
-    let userImage = "https://bulma.io/images/placeholders/128x128.png";
+    useEffect(() => {
+      async function fetchImages() {
+        try {
+          const data = await listImages();
+          const imageUrls = data.Contents.map((image) => ({
+            key: image.Key,
+            url: imgUrl,
+          }));
+          // Set the first image as the user image
+          if (imageUrls.length > 0) {
+            setUserImage(imageUrls[0].url);
+          }
+        } catch (error) {
+          console.error('Error fetching images:', error);
+        }
+      }
+  
+      fetchImages();
+    }, []);
 
     //Function used to logout the user
     const logoutHandler = (event) => {

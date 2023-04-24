@@ -23,7 +23,8 @@ const ResultCard = (props) => {
         rarity: props.rarity,
         severity: props.severity,
         treatment: props.treatment,
-        requirements: props.requirements
+        requirements: props.requirements,
+        image: props.image
         }
       });
     }
@@ -36,7 +37,7 @@ const ResultCard = (props) => {
               <div className="media-left">
                 <figure className="image is-48x48">
                   <img
-                    src="https://bulma.io/images/placeholders/96x96.png"
+                    src={props.image}
                     alt="Placeholderimage"
                   />
                 </figure>

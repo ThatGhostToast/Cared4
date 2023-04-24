@@ -36,15 +36,25 @@ const SBNForm = () => {
       //Calling the API and saving the response 
       let response = await dataSource.get("/sicknesses/search/name/" + name);
 
-      //Logging the response for testing purposes NOTE: WILL BE REMOVED IN FULL RELEASE
-      //TODO remove this when application is fully operational
-      console.log(response.data);
-
       //If the API responds with a status of 200 then the process was a success and the application can continue
       if (response.status === 200)
       {
         //Navigate to the results of the search
-        navigate("/results");
+        navigate('/closeup', { state: {
+          id: response.data[0].id,
+          commonName: response.data[0].commonName,
+          name: response.data[0].name,
+          symptoms: response.data[0].symptoms,
+          commonTargets: response.data[0].commonTargets,
+          description: response.data[0].description,
+          rarity: response.data[0].rarity,
+          severity: response.data[0].severity,
+          treatment: response.data[0].treatment,
+          requirements: response.data[0].requirements,
+          image: response.data[0].image
+        }
+      });
+         
       //If the API responds with a status of 201 then no results were found from the search
       } else if (response.status === 201) {
         //Navigate back to the search form with an error to display.

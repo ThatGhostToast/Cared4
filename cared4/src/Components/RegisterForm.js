@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { uploadToS3 } from "../s3.js";
+import { getPresignedUrl } from "../s3.js";
 import dataSource from "../dataSource.js";
 import '../Styles/Bulma.css'
 import '../Styles/CustomStyles.css'
 
 const RegisterForm = () => {
-    // Progress bar showing the user how complete registration is
-    //const [progress, setProgress] = useState(0);
-    let progress = 0;
-
     // Variable used to hold the new user's first name
     const [newFirstName, setNewFirstName] = useState('');
     // Variable used to hold the new user's last name
@@ -24,7 +22,9 @@ const RegisterForm = () => {
     // Variable used to hold the new user's previous conditions
     const [newPreviousConditions, setNewPreviousConditions] = useState('');
     // Variable used to hold the new user's profile picture
-    const [newImage, setNewImage] = useState('');
+    const [newImage, setNewImage] = useState(null);
+    // Variable used to check if a required input is not included
+    const [errors, setErrors] = useState(true);
     // Key used to authenticate API access
     const API_KEY = process.env.REACT_APP_API_KEY
     // Navigational tool used to navigate the user and their data
@@ -33,43 +33,63 @@ const RegisterForm = () => {
     // Function used to update the 'newFirstName' variable
     const updateFirstName = (event) => {
       setNewFirstName(event.target.value);
+      validateForm();
     };
     // Function used to update the 'newLastName' variable
     const updateLastName = (event) => {
       setNewLastName(event.target.value);
+      validateForm();
     };
     // Function used to update the 'newEmail' variable
     const updateEmail = (event) => {
       setNewEmail(event.target.value);
+      validateForm();
     };
     // Function used to update the 'newPassword' variable
     const updatePassword = (event) => {
       setNewPassword(event.target.value);
+      validateForm();
     };
     // Function used to update the 'newBirthday' variable
     const updateBirthday = (event) => {
       setNewBirthday(event.target.value);
+      validateForm();
     };
     // Function used to update the 'newSex' variable
     const updateSex = (event) => {
       setNewSex(event.target.value);
+      validateForm();
     };
     // Function used to update the 'newPreviousConditions' variable
     const updateConditions = (event) => {
       setNewPreviousConditions(event.target.value);
+      validateForm();
     };
     // Function used to update the 'newImage' variable
     const updateImage = (event) => {
-      setNewImage(event.target.value);
+      setNewImage(event.target.files[0]);
     };
   
     // Function used to handle form submission
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = async (event) => {
       //Prevents the defaul action so we can use our own submit function
       event.preventDefault();
   
       //Logging that the form was submitted
       console.log("submit");
+
+      //Submitting the user profile picture to an AWS S3 bucket
+      var presignedUrl = '';
+      if (newImage) {
+        const response = await uploadToS3(newImage);
+        console.log('File uploaded successfully:', response);
+    
+        // Get the pre-signed URL
+        presignedUrl = getPresignedUrl(response.Key);
+        console.log('Pre-signed URL:', presignedUrl);
+      } else {
+        console.log('Please select a file to upload.');
+      }
 
       //Creating the new user object to be sent to the API
       const newUser = {
@@ -80,7 +100,7 @@ const RegisterForm = () => {
         birthday: newBirthday,
         sex: newSex,
         conditions: newPreviousConditions,
-        image: newImage,
+        image: presignedUrl,
         key: API_KEY
       };
   
@@ -118,10 +138,26 @@ const RegisterForm = () => {
       }
     };  
 
+    //Function used to check all form inputs to check if there's a value in each
+    const validateForm = () => {
+      if (
+        newFirstName &&
+        newLastName &&
+        newEmail &&
+        newPassword &&
+        newBirthday &&
+        newSex &&
+        newPreviousConditions 
+      ) {
+        setErrors(false);
+      } else {
+        setErrors(true);
+      }
+    };    
+
     //Return the register form
     return (
       <div className="container is-max-desktop">
-        <progress className="progress is-primary" value={progress} max="100" />
         <form onSubmit={handleFormSubmit}>
           <section>
             <div className="field">
@@ -213,7 +249,7 @@ const RegisterForm = () => {
               <label className="label">Sex</label>
               <div className="control">
                 <div className="select is-primary is-medium">
-                  <select onChange={updateSex}>
+                  <select onChange={updateSex} id="sexInput">
                     <option selected="true" disabled>
                       Please select your sex
                     </option>
@@ -254,7 +290,7 @@ const RegisterForm = () => {
             <div className="field">
               <div className="control">
                 <label className="checkbox">
-                  <input type="checkbox" />I agree to the{" "}
+                  <input type="checkbox" id="checkboxInput"/>I agree to the{" "}
                   <a href="/terms">terms and conditions</a>
                 </label>
               </div>
@@ -262,7 +298,7 @@ const RegisterForm = () => {
 
             <div className="field is-grouped">
               <div className="control">
-                <button className="button is-primary" type="submit">Submit</button>
+                <button className="button is-primary" type="submit" disabled={errors}>Submit</button>
               </div>
               <div className="control">
                 <a className="button is-primary is-outlined" href="/login">

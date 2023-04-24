@@ -14,7 +14,7 @@ const CloseUp = () => {
     //Getting the illness information of the selected illness
     const {state} = useLocation();
     //Saving the illness data into usable variables
-    const {id, commonName, name, symptoms, commonTargets, description, rarity, severity, requirements, treatment} = state;
+    const {id, commonName, name, symptoms, commonTargets, description, rarity, severity, requirements, treatment, image} = state;
 
     //Logging the ID of the illness
     console.log("Illness ID: " + id);
@@ -38,7 +38,7 @@ const CloseUp = () => {
         <section className="section content-squish content-squish-bottom">
           <div className="columns">
             <div className="column">
-              <img src="" alt="sicknessImg" className="sickness-image" />
+              <img src={image} alt="sicknessImg" className="sickness-image" />
             </div>
             <div className="column">
               <div className="card">

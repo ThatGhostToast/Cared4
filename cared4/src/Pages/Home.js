@@ -71,7 +71,7 @@ const Home = () => {
             <HomeCards data={randomIllnesses}/>
           </div>
         </section>
-        <section className="section">
+        <section className="section content-squish">
           {chooseButtons()}
         </section>
       </div>

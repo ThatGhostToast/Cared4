@@ -19,7 +19,8 @@ const HomeIllnessCard = (props) => {
         rarity: props.rarity,
         severity: props.severity,
         treatment: props.treatment,
-        requirements: props.requirements
+        requirements: props.requirements,
+        image: props.image
         }
       });
     }
@@ -28,7 +29,8 @@ const HomeIllnessCard = (props) => {
       <div className="card">
         <div className="homeCardImage">
           <img
-            src="https://bulma.io/images/placeholders/1280x960.png"
+            //src="https://bulma.io/images/placeholders/1280x960.png"
+            src={props.image}
             alt="Placeholder"
             className="hici"
           />

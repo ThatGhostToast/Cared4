@@ -2,7 +2,6 @@ import React from "react";
 import NavBar from "../Components/Navbars/NavBar";
 import NavBarSI from "../Components/Navbars/NavBarSI";
 import ProbableResults from "../Components/Diagnosis/ProbableResults";
-import PossibleResults from "../Components/Diagnosis/PossibleResults";
 
 /**
  * Results page that displays the illnesses returned form a search
@@ -22,6 +21,8 @@ const Results = (props) => {
       }
     };
 
+    //TODO Implement possible results
+
     //Return the page created with components
     return (
         <div>
@@ -31,9 +32,6 @@ const Results = (props) => {
             <section className="section content-squish-bottom">
                 <h1 className="title is-3">You most likely have:</h1>
                 <ProbableResults />
-            </section>
-            <section className="section content-squish">
-                <PossibleResults />
             </section>
         </div>
     );

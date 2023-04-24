@@ -34,20 +34,30 @@ const SBSForm = () => {
 
     // Function used to call the API
     const saveIllness = async (symptoms) => {
-      //Calling the API and saving the response 
-      let response = await dataSource.get("/sicknesses/search/symptoms/" + symptoms);
+      //Getting the user info
+      var loggedIn = JSON.parse(sessionStorage.getItem('loggedInUserEmail'));
 
-      //Logging the response for testing purposes NOTE: WILL BE REMOVED IN FULL RELEASE
-      //TODO remove this when application is fully operational
-      console.log(response.data);
+      //If else that sends a different request based on if the user is signed in.
+      let probResponse;
+      if (loggedIn)
+      {
+        //Calling the API and saving the response 
+        console.log("CALLING API");
+        probResponse = await dataSource.post("/sicknesses/search/symptoms/" + symptoms, loggedIn);
+      } else {
+        //Calling the API and saving the response 
+        probResponse = await dataSource.post("/sicknesses/search/symptoms/" + symptoms);
+      }
 
       //If the API responds with a status of 200 then the process was a success and the application can continue
-      if (response.status === 200) {
-        sessionStorage.setItem('probIllness', JSON.stringify(response.data));
+      if (probResponse.status === 200) {
+        var probIllnessData = JSON.stringify(probResponse.data);
+        
+        sessionStorage.setItem('probIllness', probIllnessData);
         //Navigate to the results of the search
         navigate("/results");
       //If the API responds with a status of 201 then no results were found from the search
-      } else if (response.status === 201) {
+      } else if (probResponse.status === 201) {
         //Navigate back to the search form with an error to display.
         navigate({
           pathname: "/search",

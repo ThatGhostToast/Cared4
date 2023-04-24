@@ -32,6 +32,12 @@
     display: flex;
     justify-content: center;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.homeButton{
+    flex: 1;
+    margin: 1%;
 }
 
 .customCard{
