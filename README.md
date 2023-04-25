@@ -7,6 +7,8 @@
 ### What is Cared4?
 Cared4 is the next best self-diagnosing personal care tool. Users can utilize Cared4 to search for their symptoms and get a diagnosis instantly without doctoral consultation. The application is optimized to be incredibly user-friendly, making care accessible to everyone. Simply inputting a user’s symptoms into the search bar will start their diagnosis as the Cared4 algorithm will quickly provide results illustrating to the user what they most likely have. Whereas other self-diagnosing software displays every result no matter how terrifying, Cared4 will keep the user calm by placing rare conditions separate from what they most likely have. Cared4 will also have the capability to be personalized. Users will be given the option to add personal information such as pre-existing conditions, age, and gender to their profile, which can give them more accurate results when searching for their symptoms. Personalization will also help Cared4’s algorithm determine how severe an illness is. For example, if a user has undergone chemotherapy, a sickness like pneumonia is much more severe than usual. The goal of this application is to bring reliable healthcare to everybody. Sometimes visiting a doctor can be a daunting task. Whether it’s too expensive or too time-consuming, it can be a hassle. Cared4 brings the doctor to your phone, so you can get results whenever is most convenient for free. Providing help wherever possible is how Cared4 brings healthcare into the 21st century.
 </br>
+### Project Objectives
+Everyone should have access to some form of medical care. The objective of Cared4 is to provide a simple healthcare option to everyone. Users will never again have to worry about scheduling an appointment or facing a hefty bill for simple questions about their symptoms. This not only gives the user extra free time but also takes some of the work off of doctors’ plates by answering questions for them. If everyone is able to diagnose themselves from the comfort of their homes effortlessly, Cared4 will be considered a success. 
 ### Cared4 Technologies
 This diagram shows the technologies used to build and host Cared4.
 </br>
@@ -43,6 +45,19 @@ Cared4 uses a SQL database that only requires two tables, Users and Illnesses. T
 ### Encryption
 Cared4's API uses CryptoJS to encrypt user data before it gets stored in the RDS database. This ensures that in the event of a data leak, user account information stays secure. 
 
+### New Technologies
+New technologies learned while developing this project were DevOps technolgies. While the team was pretty familiar with the frameworks and languages used to develop the application, the DevOps principles and tools such as continuous deployment, logging, and uptime monitoring were new concepts that were explored to maintain Cared4's availability.
+
+### Risks/Challenges
+* Risk: Someone hacks into the database
+  - While the probability of this happening are low, it is still important to be prepared because the impact of this could be devestating. User information could get leaked which would lead to a loss in user trust and possibly lawsuits. Because this is such an important issue, it is essential to ensure the project is protected against common cyber attacks such as SQL injections. Additionally, encrypting the content of the database will ensure that if data leaks then, the hacker won’t be able to read it. Furthermore, getting ahead of the problem by not requiring users to input sensitive information, just what they think is required, can give the user peace of mind if there is a data leak. 
+* Challenge: Keeping the most accurate information
+  - Since the application will use a custom database, ensuring Cared4 has the most accurate information may require extra attention. The developers must research multiple data lists to ensure Cared4 starts with the most updated data. It may pose a challenge to find this data list and keep the information updated as new discoveries are made. It may also be a challenge for the developers to always know of every update to current medical information as it’s presented. Keeping up with the newest information is essential for Cared4’s success and needs to always be accounted for.
+
+### Outstanding Issues
+While CryptoJS is an excellent framework, decrypting data that has been hashed became a slight problem. A work around was created to encrypt the user password to ensure that is secure when online. However, the users pre-existing conditions are still not encrypted. This will be the first major update to ensure users have piece of mind.
+
+## Functional and Non-Functional Requirements
 ### Functional Requirements
 <details closed>
 <summary>Register Requirements</summary>
@@ -130,7 +145,44 @@ Cared4's API uses CryptoJS to encrypt user data before it gets stored in the RDS
 | Display Results   | As a system | I would like to display the exact illness results to the user              | So the user can determine what they can do to treat their illness                                            |
 </details>
 
+<details closed>
+<summary>User API Method Requirements</summary>
+
+|    Sub-Features   |    As a(n)    |                                              I would like to                                             |                                             So that                                             |
+|:-----------------:|:-----------:|:----------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
+| Front-End Connection        | As a system  | I would like to connect to the Cared4 front-end                                                                | So that I can receive or display user information                                             |
+| Database Connection    | As a system   | I would like to connect to the user database                                                          | So that I can create and read data inside the database                                                  |
+| Data Encryption   | As a system | I would like to encrypt user data before putting it into the database              | So that user information is secured and protected against data leaks                                            |
+| Data Decryption   | As a system | I would like to decrypt user data before displaying it to the user              | So that the user can read the data they entered                                            |
+</details>
+<details closed>
+<summary>Illness API Method Requirements</summary>
+
+|    Sub-Features   |    As a(n)    |                                              I would like to                                             |                                             So that                                             |
+|:-----------------:|:-----------:|:----------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
+| Front-End Connection        | As a system  | I would like to connect to the Cared4 front-end                                                                | So that I can recieve symptoms from the user and display results                                             |
+| Database Connection    | As a system   | I would like to connect to the illness database                                                          | So that I can query the database                                                  |
+| Symptoms Query   | As a system | I would like to run a search query on the database using the symptoms recieved from Cared4              | So that I can return possible results to the probability API                                            |
+| Name Query   | As a system | I would like to run a search query on the database using the name of an illness entered               | So that I can return a specific illness to the user                                            |
+</details>
+<details closed>
+<summary>Probability Algorithm Requirements</summary>
+
+|    Sub-Features   |    As a(n)    |                                              I would like to                                             |                                             So that                                             |
+|:-----------------:|:-----------:|:----------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
+| Running the Algorithm        | As a system  | I would like to run an algorithm that determines the highest illness probability based on the symptoms the user input and the base probability                                                                | So that the most accurate results can be returned to the user                                             |
+| Front-End Connection    | As a system   | I would like to connect to the Cared4 front-end                                                          | So that I can return the results of the algorithm to the user                                                  |
+</details>
+<details closed>
+<summary>Hosting Requirements</summary>
+
+|    Sub-Features   |    As a(n)    |                                              I would like to                                             |                                             So that                                             |
+|:-----------------:|:-----------:|:----------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------:|
+| Hosting Availability         | As a system  | I would like to be a web application on Chrome (Version 106.0.5249.119+), Edge (Version 106.0.1370.34+), Firefox (Version 105.0.3+), and Safari (Version 16+)                                                                | So that users can access Cared4 from the most common browsers on their computer                                             |
+</details>
+
 ### Non-Functional Requirement (NFR)
+A non-functional requirement that Cared4 has is device compatibility. The developer aims to make Cared4 available on the most popular devices. Using React to build Cared4 supports this NFR by enabling the application to be viewed on popular browsers like Chrome (Version 106.0.5249.119+), Edge (Version 106.0.1370.34+), Firefox (Version 105.0.3+), or Safari (Version 16+) which can be accessed from home computers, smartphones, and tablets. 
 
 ## DevOps
 ### Logging
