@@ -118,6 +118,10 @@
     margin-top: 2px;
 }
 
+.errorMessages {
+    color: red;
+}
+
 /** Tablet Styles **/
 
 /** Mobile Styles **/

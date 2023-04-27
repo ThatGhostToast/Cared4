@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { uploadToS3 } from "../s3.js";
 import dataSource from "../dataSource.js";
 import '../Styles/Bulma.css'
 import '../Styles/CustomStyles.css'
@@ -26,8 +27,16 @@ const AccountDetails = () => {
     const [updatedSex, setUpdatedSex] = useState(user.sex);
     // Variable used to hold the new user's previous conditions
     const [updatedPreviousConditions, setUpdatedPreviousConditions] = useState(user.conditions);
-    // Variable used to set the user image
+    // Variables used to set the user image
     const [userImage, setUserImage] = useState(user.image);
+    const [newImageFile, setNewImageFile] = useState(null);
+    // Variable used to check if a required input is not included
+    const [errors, setErrors] = useState(false);
+    // Error messages
+    const [fnErrorMessage, setFnErrorMessage] = useState('');
+    const [lnErrorMessage, setLnErrorMessage] = useState('');
+    const [emailErrorMessage, setEmailErrorMessage] = useState('');
+    const [passErrorMessage, setPassErrorMessage] = useState('');
     // Key used to authenticate API access
     const API_KEY = process.env.REACT_APP_API_KEY
     //Navigational tool used to get around the application
@@ -84,13 +93,40 @@ const AccountDetails = () => {
       navigate("/");
     }
 
+    //Function used to check all form inputs to check if there's a value in each
+    const validateForm = () => {
+      if (
+        !fnErrorMessage &&
+        !lnErrorMessage &&
+        !emailErrorMessage &&
+        !passErrorMessage
+      ) {
+        setErrors(false);
+      } else {
+        setErrors(true);
+      }
+    }; 
+
     // Function used to handle form submission
-    const handleFormSubmit = (event) => {
+    const handleFormSubmit = async (event) => {
       //Prevents the defaul action so we can use our own submit function
       event.preventDefault();
   
       //Logging that the form was submitted
       console.log("saved");
+
+      if(newImageFile)
+      {
+        //Uploading the new image to the S3 bucket
+        const response = await uploadToS3(newImageFile);
+        console.log('File uploaded successfully:', response);
+    
+        // Get the pre-signed URL
+        setUserImage(response.Location);
+        console.log('Image URL:', userImage);
+      } else {
+        console.log("No new image selected.");
+      }
 
       //Creating the new user object to be sent to the API
       const updatedUser = {
@@ -105,9 +141,16 @@ const AccountDetails = () => {
         image: userImage,
         key: API_KEY
       };
-  
-      //Calling saveUser to send the information to the database
-      updateUser(updatedUser);
+
+      const emailCheck = await dataSource.post("/users/search/foruser/email/", updatedUser);
+      console.log(emailCheck.status);
+      if (emailCheck.status === 200) {
+        //If a user was found with this email then the user needs to enter a new email
+        setEmailErrorMessage('Email already taken! Please enter a new email.');
+      } else {
+        //Calling updateUser to send the information to the database
+        updateUser(updatedUser);
+      }
     };
 
     // Function used to call the API
@@ -140,18 +183,72 @@ const AccountDetails = () => {
     // Function used to update the 'updatedFirstName' variable
     const updateFirstName = (event) => {
       setUpdatedFirstName(event.target.value);
+
+      // check for special characters and numbers
+      if (/[^a-zA-Z]/.test(event.target.value)) {
+        setFnErrorMessage('Please enter only letters');
+      } else {
+        setFnErrorMessage('');
+        if (event.target.value.length < 1)
+        {
+          setFnErrorMessage('Please enter a first name');
+        } else {
+          setFnErrorMessage('');
+        }
+      }
+
+      validateForm();
     };
     // Function used to update the 'updatedLastName' variable
     const updateLastName = (event) => {
       setUpdatedLastName(event.target.value);
+
+      // check for special characters and numbers
+      if (/[^a-zA-Z]/.test(event.target.value)) {
+        setLnErrorMessage('Please enter only letters');
+      } else {
+        setLnErrorMessage('');
+        if (event.target.value.length < 1)
+        {
+          setLnErrorMessage('Please enter a last name');
+        } else {
+          setLnErrorMessage('');
+        }
+      }
+
+      validateForm();
     };
     // Function used to update the 'updatedEmail' variable
     const updateEmail = (event) => {
       setUpdatedEmail(event.target.value);
+      setEmailErrorMessage('');
+      validateForm();
     };
     // Function used to update the 'updatedPassword' variable
     const updatePassword = (event) => {
       setUpdatedPassword(event.target.value);
+
+      // check for semi colons
+      if (/;/.test(event.target.value))
+      {
+        setPassErrorMessage("Please remove the ';' symbol");
+      }
+      //Check the input length
+      if (event.target.value.length < 8)
+      {
+        setPassErrorMessage('Password must be 8 characters long');
+      } else {
+        setPassErrorMessage('');
+        
+        //Check if the password contains at least one special character
+        if (!/[!@#$%^&*()_+\-={}[\]:"'<>,.?~`]/.test(event.target.value)) {
+          setPassErrorMessage('Please enter at least one special character');
+        } else {
+          setPassErrorMessage('');
+        }
+      }
+
+      validateForm();
     };
     // Function used to update the 'updatedBirthday' variable
     const updateBirthday = (event) => {
@@ -164,6 +261,10 @@ const AccountDetails = () => {
     // Function used to update the 'updatedPreviousConditions' variable
     const updateConditions = (event) => {
       setUpdatedPreviousConditions(event.target.value);
+    };
+    // Function used to update the 'newImage' variable
+    const updateImage = (event) => {
+      setNewImageFile(event.target.files[0]);
     };
 
     //Return the users formatted information
@@ -190,6 +291,7 @@ const AccountDetails = () => {
                   readOnly={firstNameReadonly}
                 />
               </div>
+              {fnErrorMessage && <div className="errorMessages">{fnErrorMessage}</div>}
               <button type="button" className="button is-primary is-inverted is-small edit-Buttons" onClick={setFNReadonly}>Edit</button>
             </div>
             <div className="field">
@@ -204,6 +306,7 @@ const AccountDetails = () => {
                   readOnly={lastNameReadonly}
                 />
               </div>
+              {lnErrorMessage && <div className="errorMessages">{lnErrorMessage}</div>}
               <button type="button" className="button is-primary is-inverted is-small edit-Buttons" onClick={setLNReadonly}>Edit</button>
             </div>
 
@@ -220,6 +323,7 @@ const AccountDetails = () => {
                   readOnly={emailReadonly}
                 />
               </div>
+              {emailErrorMessage && <div className="errorMessages">{emailErrorMessage}</div>}
               <button type="button" className="button is-primary is-inverted is-small edit-Buttons" onClick={setMailReadonly}>Edit</button>
             </div>
             <div className="field">
@@ -235,6 +339,7 @@ const AccountDetails = () => {
                   readOnly={passwordReadonly}
                 />
               </div>
+              {passErrorMessage && <div className="errorMessages">{passErrorMessage}</div>}
               <button type="button" className="button is-primary is-inverted is-small edit-Buttons" onClick={setPassReadonly}>Edit</button>
             </div>
             <div className="field">
@@ -282,9 +387,21 @@ const AccountDetails = () => {
               </div>
               <button type="button" className="button is-primary is-inverted is-small edit-Buttons" onClick={setPrevConditionsReadonly}>Edit</button>
             </div>
+            <div className="field">
+              <label className="label">Profile Picture</label>
+              <div className="control">
+                <input
+                  className="input is-primary is-medium"
+                  type="file"
+                  accept="image/*"
+                  id="imageInput"
+                  onChange={updateImage}
+                />
+              </div>
+            </div>
             <div className="field is-grouped">
               <div className="control">
-                <button className="button is-primary" type="submit">Save</button>
+                <button className="button is-primary" type="submit" disabled={errors}>Save</button>
               </div>
             </div>
           </section>

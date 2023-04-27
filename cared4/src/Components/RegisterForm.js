@@ -24,6 +24,11 @@ const RegisterForm = () => {
     const [newImage, setNewImage] = useState(null);
     // Variable used to check if a required input is not included
     const [errors, setErrors] = useState(true);
+    // Error messages
+    const [fnErrorMessage, setFnErrorMessage] = useState('');
+    const [lnErrorMessage, setLnErrorMessage] = useState('');
+    const [emailErrorMessage, setEmailErrorMessage] = useState('');
+    const [passErrorMessage, setPassErrorMessage] = useState('');
     //Submitting the user profile picture to an AWS S3 bucket
     const [imgUrl, setImgUrl] = useState(null);
     // Key used to authenticate API access
@@ -34,21 +39,59 @@ const RegisterForm = () => {
     // Function used to update the 'newFirstName' variable
     const updateFirstName = (event) => {
       setNewFirstName(event.target.value);
+
+      // check for special characters and numbers
+      if (/[^a-zA-Z]/.test(event.target.value)) {
+        setFnErrorMessage('Please enter only letters');
+      } else {
+        setFnErrorMessage('');
+      }
+
       validateForm();
     };
     // Function used to update the 'newLastName' variable
     const updateLastName = (event) => {
       setNewLastName(event.target.value);
+
+      // check for special characters and numbers
+      if (/[^a-zA-Z]/.test(event.target.value)) {
+        setLnErrorMessage('Please enter only letters');
+      } else {
+        setLnErrorMessage('');
+      }
+
       validateForm();
     };
     // Function used to update the 'newEmail' variable
     const updateEmail = (event) => {
       setNewEmail(event.target.value);
+      setEmailErrorMessage('');
       validateForm();
     };
     // Function used to update the 'newPassword' variable
     const updatePassword = (event) => {
       setNewPassword(event.target.value);
+
+      // check for semi colons
+      if (/;/.test(event.target.value))
+      {
+        setPassErrorMessage("Please remove the ';' symbol");
+      }
+      //Check the input length
+      if (event.target.value.length < 8)
+      {
+        setPassErrorMessage('Password must be 8 characters long');
+      } else {
+        setPassErrorMessage('');
+        
+        //Check if the password contains at least one special character
+        if (!/[!@#$%^&*()_+\-={}[\]:"'<>,.?~`]/.test(event.target.value)) {
+          setPassErrorMessage('Please enter at least one special character');
+        } else {
+          setPassErrorMessage('');
+        }
+      }
+
       validateForm();
     };
     // Function used to update the 'newBirthday' variable
@@ -102,9 +145,16 @@ const RegisterForm = () => {
         image: imgUrl,
         key: API_KEY
       };
-  
-      //Calling saveUser to send the information to the database
-      saveUser(newUser);
+
+      const emailCheck = await dataSource.post("/users/search/foruser/email/", newUser);
+      console.log(emailCheck.status);
+      if (emailCheck.status === 200) {
+        //If a user was found with this email then the user needs to enter a new email
+        setEmailErrorMessage('Email already taken! Please enter a new email.');
+      } else {
+        //Calling saveUser to send the information to the database
+        saveUser(newUser);
+      }
     };
   
     // Function used to call the API
@@ -146,7 +196,11 @@ const RegisterForm = () => {
         newPassword &&
         newBirthday &&
         newSex &&
-        newPreviousConditions 
+        newPreviousConditions &&
+        !fnErrorMessage &&
+        !lnErrorMessage &&
+        !emailErrorMessage &&
+        !passErrorMessage
       ) {
         setErrors(false);
       } else {
@@ -168,8 +222,10 @@ const RegisterForm = () => {
                   placeholder="First Name"
                   id="firstNameInput"
                   onChange={updateFirstName}
+                  maxLength={32}
                 />
               </div>
+              {fnErrorMessage && <div className="errorMessages">{fnErrorMessage}</div>}
             </div>
             <div className="field">
               <div className="control">
@@ -179,8 +235,10 @@ const RegisterForm = () => {
                   placeholder="Last Name"
                   id="lastNameInput"
                   onChange={updateLastName}
+                  maxLength={32}
                 />
               </div>
+              {lnErrorMessage && <div className="errorMessages">{lnErrorMessage}</div>}
             </div>
 
             <div className="field">
@@ -205,6 +263,7 @@ const RegisterForm = () => {
                   id="confirmEmailInput"
                 />
               </div>
+              {emailErrorMessage && <div className="errorMessages">{emailErrorMessage}</div>}
             </div>
 
             <div className="field">
@@ -216,8 +275,10 @@ const RegisterForm = () => {
                   placeholder="Password"
                   id="passwordInput"
                   onChange={updatePassword}
+                  minLength={8}
                 />
               </div>
+              {passErrorMessage && <div className="errorMessages">{passErrorMessage}</div>}
             </div>
 
             <div className="field">
