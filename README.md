@@ -14,22 +14,22 @@ Providing users with another healthcare application that allows them to diagnose
 ### Cared4 Technologies
 This diagram shows the technologies used to build and host Cared4.
 </br>
-<img width="750" alt="image" src="https://cared4-assets.s3.us-west-1.amazonaws.com/GitHub+Resources/Cared4+Technologies+Diagram.png">
+<img width="750" alt="image" src="README IMAGES/Cared4 Technologies Diagram.png">
 
 ### Logical System Architecture
 The diagram below is used to illustrate the overall logical design of Cared4. Since the application was developed using the React framework, each of the components is shown in the diagram to illustrate what makes up Cared4's front end. Additionally, the diagram illustrates the separate API that is used by Cared4 to provide information to the user.
 </br>
-<img width="750" alt="image" src="https://cared4-assets.s3.us-west-1.amazonaws.com/GitHub+Resources/Cared4+Logical+Solution.png">  
+<img width="750" alt="image" src="README IMAGES/Cared4 Logical Solution.png">  
 
 ### The Process
 This diagram illustrates the flow of the application's processes. 
 </br>
-<img width="750" alt="image" src="https://cared4-assets.s3.us-west-1.amazonaws.com/GitHub+Resources/Cared4+Block+Diagram.png">
+<img width="750" alt="image" src="README IMAGES/Cared4 Block Diagram.png">
 
 ### Physical System Architecture
 This diagram shows the physical design of the application. The application is hosted on three services. The user can access the application by using either their phone or their computer using HTTPS port 443 because Cared4 is hosted on Vercel. When the user uses Cared4's services, Cared4's API connects to an AWS RDS database which stores all of the user and illness data.
 </br>
-<img width="750" alt="image" src="https://cared4-assets.s3.us-west-1.amazonaws.com/GitHub+Resources/Cared4+Physical+Solution.png">
+<img width="750" alt="image" src="README IMAGES/Cared4 Physical Solution.png">
 
 ## Detailed Technical Design
 
