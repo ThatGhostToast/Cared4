@@ -199,7 +199,7 @@ Cared4's front-end and back-end support continuous deployment via build pipeline
 ### Uptime Monitoring
 Cared4's front-end and API uptime are monitored via Uptime Robot. This service monitors Cared4 by testing its response time every 5 minutes. If either of these services becomes unavailable, a developer is notified, and the application can be quickly fixed and brought back online. You can check the status of Cared4 [here](https://stats.uptimerobot.com/RVjQJUGMv7)!
 </br>
-<img width="450" alt="image" src="https://cared4-assets.s3.us-west-1.amazonaws.com/GitHub+Resources/UptimeRobotIMG.png">
+<img width="450" alt="image" src="README IMAGES/UptimeRobot.png">
 
 ## Additional Resources
 [Software Demo](https://www.loom.com/share/671bc33d2735471f90a5fa31e8475689) | 
