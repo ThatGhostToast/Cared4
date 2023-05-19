@@ -42,7 +42,7 @@ One of the most important objectives of this project is to make it accessible to
 ### Database Design
 Cared4 uses a SQL database that only requires two tables, Users and Illnesses. The API uses the information from the Users table to provide the user with the most accurate results. However, having an account is not required for diagnosis (just recommended), so no connection between the two tables is required.
 </br>
-<img width="450" alt="image" src="https://cared4-assets.s3.us-west-1.amazonaws.com/GitHub+Resources/Cared4_Database_Design.png">
+<img width="450" alt="image" src="README IMAGES/database design.png">
 
 ### Encryption
 Cared4's API uses CryptoJS to encrypt user data before it gets stored in the RDS database. This ensures that in the event of a data leak, user account information stays secure. 
@@ -191,7 +191,7 @@ A non-functional requirement that Cared4 has is device compatibility. The develo
 ### Logging
 Cared4's API has extensive logging throughout the application. All major processes and possible errors, as well as the entry and exit of all methods, are logged. These logs are stored in the loggly software. This allows developers to quickly diagnose issues while the application is still running. A developer can search for the error tag directly, or if they know where the error is occurring, search for the entry point of that method.
 </br>
-<img width="450" alt="image" src="https://cared4-assets.s3.us-west-1.amazonaws.com/GitHub+Resources/LogglyIMG.png">
+<img width="450" alt="image" src="README IMAGES/loggly.png">
 
 ### Build Pipelines
 Cared4's front-end and back-end support continuous deployment via build pipelines. Both Vercel and Render connect directly to GitHub repositories and will rebuild and redeploy on new code commits. These pipelines support continuous integration and continuous deployment (CI/CD), allowing developers to quickly update Cared4 without having to take down the site and re-upload. 
