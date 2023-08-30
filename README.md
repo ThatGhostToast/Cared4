@@ -202,8 +202,7 @@ Cared4's front-end and API uptime are monitored via Uptime Robot. This service m
 <img width="450" alt="image" src="README IMAGES/UptimeRobot.png">
 
 ## Additional Resources
-[Software Demo](https://www.loom.com/share/671bc33d2735471f90a5fa31e8475689) | 
-[Application Presentation](https://www.loom.com/share/671bc33d2735471f90a5fa31e8475689) | 
+[Software Demo](https://www.loom.com/share/4951e1a4d76444948d56bf40b7f7cd64?sid=7b812130-239a-49c3-b93b-bd66aa7f2caa) | 
 [REST API](https://github.com/ThatGhostToast/Cared4_REST_API) 
 
 ### Cared4 Documentation
